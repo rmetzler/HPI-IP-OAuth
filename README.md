@@ -39,7 +39,7 @@ __TODO: DESCRIBE OAuth DANCE__
 
 When a user wants to authenticate a webservice via OAuth the OAuth authentication flow (commonly referred to as OAuth dance) is executed.
 
-The authentication flow is started by the user clicking on a special link on the website of the OAuth consumer. The consumer uses his consumer key and secret to request a __unautherized OAuth request token__ and __secret__ from the service provider. This OAuth token is used to identify the authentication context for the user.
+The authentication flow is started by the user clicking on a special link on the website of the OAuth consumer. The consumer uses his consumer key and secret to request a __unauthorized OAuth request token__ and __secret__ from the service provider. This OAuth token is used to identify the authentication context for the user.
 
 After obtaining the request token, the user is redirected from the consumer to the service provider. Thereby the request token is appended on the URL. The user is authenticated and can now authorize the consumer. The service provider directs the user back to the consumer.
 
