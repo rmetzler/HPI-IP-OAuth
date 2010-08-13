@@ -37,7 +37,7 @@ In order to authenticate an user and enabling authorization an OAuth consumer ha
 ### OAuth Dance
 __TODO: DESCRIBE OAuth DANCE__
 
-When a user wants to authenticate a webservice via OAuth the OAuth authentication flow (commonly known as OAuth dance) is executed.
+When a user wants to authenticate a webservice via OAuth the OAuth authentication flow (commonly referred to as OAuth dance) is executed.
 
 ![OAuth dance](http://a0.twimg.com/images/dev/oauth_diagram.png)  
 source: [http://dev.twitter.com/pages/auth](http://dev.twitter.com/pages/auth)
