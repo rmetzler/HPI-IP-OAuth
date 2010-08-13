@@ -27,16 +27,20 @@ In this paper we describe the OAuth 1.0a protocol. Then we describe our  propose
 
 ## OAuth 
 
-OAuth is an open protocol to allow secure API authorization in a simple and standard method from desktop and web applications.
-
-It enables __users__ to authenticate and authorize 3rd party applications called __OAuth consumers__ to access data that is associated with a __resource__ managed by the __service provider__.
+__OAuth__ is an open protocol to allow secure API authorization in a simple and standard method from desktop and web applications. It enables __users__ to authenticate and authorize 3rd party applications called __OAuth consumers__ to access data that is associated with a __resource__ managed by the __service provider__.
 
 ![OAuth parties](HPI-IP-OAuth/raw/master/OAuth.png)  
 The three different parties in OAuth protocol.
 
+In order to authenticate an user and enabling authorization an OAuth consumer has to be registered at the service provider. Through registration the service provider gets a dedicated token / secret pair that is used for authenticating the service whenever user access is requested. 
+
 ### OAuth Dance
 __TODO: DESCRIBE OAuth DANCE__
 
+When a user wants to authorize and authenticate via OAuth a certain flow is executed commonly known as OAuth dance.
+
+![OAuth dance](http://a0.twimg.com/images/dev/oauth_diagram.png)  
+source: [http://dev.twitter.com/pages/auth](http://dev.twitter.com/pages/auth)
 
 ## OAuth Privacy Service for HPIIP
 
