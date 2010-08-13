@@ -34,8 +34,17 @@ The three different parties in OAuth protocol.
 __TODO: DESCRIBE OAuth DANCE__
 
 
-## OAuth Example Service
+## OAuth API Example Service for HPIIP
 
+One main feature of the HPIIP is to act as an __identity provider__ and issue __IdentityCards__. These Identity Cards can be used by the user to sign up to a __relying party__. Then the relying party requests the associated attribute values from the identity provider. This could be something like the name or the address of the user. 
+
+In order to verify email addresses of new signed up users services often send an email with an authentication link. The user has to click this link to verify that this is an valid email address and the user actually owns it.
+
+Often an user only wants to try out a new service but don't want to provide his real email address in fear of SPAM from the service. Our proposed OAuth example service should be able to change the associated email address value of an identity card when it is authorized by the user.
+
+The service changes the value of the email address in an issued identy card every 10 minutes. Whenever a user uses the identity card to sign up to a relying party, the relying party asks the identity provider for the current email address and sends an email. Because the OAuth service forwards emails for 20min to the actual email address of the user and ignores emails send after this the user will receive only the emails from the relying party that are send in this short time window. All emails after this are considered 'SPAM' and ignored. 
+
+This is a sequence diagram of the described behaviour.
 ![OAuth Example Service Sequence](HPI-IP-OAuth/raw/master/example-service-seq.png)  
 
 
