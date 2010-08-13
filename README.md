@@ -25,8 +25,9 @@ For users this often enables a more secure and better online experience as they 
 
 OAuth is an open protocol to allow secure API authorization in a simple and standard method from desktop and web applications.
 
-It enables users to authenticate and authorize 3rd party applications to access data that is provided by the  
+It enables __users__ to authenticate and authorize 3rd party applications called __OAuth consumers__ to access data that is associated with a __resource__ managed by the __service provider__.
 
+![OAuth parties](OAuth.png)
 
 ## OAuth Example Service
 
