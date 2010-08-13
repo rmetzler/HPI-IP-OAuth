@@ -32,12 +32,18 @@ __OAuth__ is an open protocol to allow secure API authorization in a simple and 
 ![OAuth parties](HPI-IP-OAuth/raw/master/OAuth.png)  
 The three different parties in OAuth protocol.
 
-In order to authenticate an user and enabling authorization an OAuth consumer has to be registered at the service provider. Through registration the service provider gets a dedicated token / secret pair that is used for authenticating the service whenever user access is requested. 
+In order to authenticate an user and enabling authorization an OAuth consumer has to be registered at the service provider. Through registration the service provider gets a dedicated consumer key & secret pair that is used for authenticating the service whenever user access is requested. 
 
 ### OAuth Dance
 __TODO: DESCRIBE OAuth DANCE__
 
 When a user wants to authenticate a webservice via OAuth the OAuth authentication flow (commonly referred to as OAuth dance) is executed.
+
+The authentication flow is started by the user clicking on a special link on the website of the OAuth consumer. The consumer uses his consumer key and secret to request a __unautherized OAuth request token__ and __secret__ from the service provider. This OAuth token is used to identify the authentication context for the user.
+
+After obtaining the request token, the user is redirected from the consumer to the service provider. Thereby the request token is appended on the URL. The user is authenticated and can now authorize the consumer. The service provider directs the user back to the consumer.
+
+When the user returns to the consumer the consumer uses the request token to request an __access token__ & secret from the service provider. The service provider exchanges the request token for the access token thereby granting access to the user's resource(s) as long as the token is valid.
 
 ![OAuth dance](http://a0.twimg.com/images/dev/oauth_diagram.png)  
 source: [http://dev.twitter.com/pages/auth](http://dev.twitter.com/pages/auth)
