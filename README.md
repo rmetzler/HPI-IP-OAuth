@@ -25,12 +25,18 @@ For users this often enables a more secure and better online experience as they 
 
 OAuth is an open protocol to allow secure API authorization in a simple and standard method from desktop and web applications.
 
-It enables __users__ to authenticate and authorize 3rd party applications called __OAuth consumers__ to access data that is associated with a __resource__ managed by the __service provider__.
+It enables __users__ to authenticate and authorize 3rd party applications called __OAuth consumers__ tohttp://www.websequencediagrams.com/?img=mscAXQMqy access data that is associated with a __resource__ managed by the __service provider__.
 
-![OAuth parties](HPI-IP-OAuth/raw/master/OAuth.png) [OAuth parties image](HPI-IP-OAuth/raw/master/OAuth.png)
+![OAuth parties](HPI-IP-OAuth/raw/master/OAuth.png)  
+The three different parties in OAuth protocol.
+
+
+__TODO: DESCRIBE OAuth DANCE__
+
 
 ## OAuth Example Service
 
+![OAuth Example Service Sequence](HPI-IP-OAuth/raw/master/example-service-seq.png)  
 
 
 ## Implementing OAuth in HPIIP
