@@ -19,9 +19,7 @@ _Author:_ Richard Metzler
 
 Every day people use many different internet websites for their online activities. While some of these websites are used by only a few to several thousend people, some other websites like webbased email programms or social networking websites are visited by millions of users on a daily basis. Google's GMail, Facebook and Twitter are aiming to become the center of our online activities. One way to achieve this is to enable 3rd party sites to allow users to sign up with accounts from these sites. This is possible through protocols like OpenID and OAuth that are able to authenticate a user and redirect him back to the 3rd party website.
 
-For users this often enables a more secure and better online experience as they are not required to register with username and password. For the third party service this often means that their sign-up conversion rate can dramatically increase.
-
-
+For users this enables a more secure and better online experience as they are not required to register with username and password. For the third party service this often means that their sign-up conversion rate can dramatically increase.
 
 In this paper we describe the OAuth 1.0a protocol. Then we describe our  proposed privacy service that is granted access to the HPI identity provider via OAuth. We explain the changes we made in order to enable OAuth in the HPIIP and how the API works.
 
@@ -74,7 +72,7 @@ This is a sequence diagram of the described behaviour.
 
 [Talk: OpenID vs OAuth](http://www.slideshare.net/rmetzler/identity-on-the-web-openid-vs-oauth)
 
-
-
+__TODO: link to 2nd talk__
+__TODO: link to specification__
 
 
