@@ -21,13 +21,24 @@ Every day people use many different internet websites for their online activitie
 
 For users this often enables a more secure and better online experience as they are not required to register with username and password. For the third party service this often means that their sign-up conversion rate can dramatically increase.
 
-### OpenId
-
-
-### OAuth 
+## OAuth 
 
 OAuth is an open protocol to allow secure API authorization in a simple and standard method from desktop and web applications.
 
+It enables users to authenticate and authorize 3rd party applications to access data that is provided by the  
+
+
+## OAuth Example Service
+
+
+
+## Implementing OAuth in HPIIP
+
+### Web-Layer
+
+### Persistence-Layer
+
+### API-Layer
 
 [Talk: OpenID vs OAuth](http://www.slideshare.net/rmetzler/identity-on-the-web-openid-vs-oauth)
 
