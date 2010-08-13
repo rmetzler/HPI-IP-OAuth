@@ -21,20 +21,24 @@ Every day people use many different internet websites for their online activitie
 
 For users this often enables a more secure and better online experience as they are not required to register with username and password. For the third party service this often means that their sign-up conversion rate can dramatically increase.
 
+
+
+In this paper we describe the OAuth 1.0a protocol. Then we describe our  proposed privacy service that is granted access to the HPI identity provider via OAuth. We explain the changes we made in order to enable OAuth in the HPIIP and how the API works.
+
 ## OAuth 
 
 OAuth is an open protocol to allow secure API authorization in a simple and standard method from desktop and web applications.
 
-It enables __users__ to authenticate and authorize 3rd party applications called __OAuth consumers__ tohttp://www.websequencediagrams.com/?img=mscAXQMqy access data that is associated with a __resource__ managed by the __service provider__.
+It enables __users__ to authenticate and authorize 3rd party applications called __OAuth consumers__ to access data that is associated with a __resource__ managed by the __service provider__.
 
 ![OAuth parties](HPI-IP-OAuth/raw/master/OAuth.png)  
 The three different parties in OAuth protocol.
 
-
+### OAuth Dance
 __TODO: DESCRIBE OAuth DANCE__
 
 
-## OAuth API Example Service for HPIIP
+## OAuth Privacy Service for HPIIP
 
 One main feature of the HPIIP is to act as an __identity provider__ and issue __IdentityCards__. These Identity Cards can be used by the user to sign up to a __relying party__. Then the relying party requests the associated attribute values from the identity provider. This could be something like the name or the address of the user. 
 
