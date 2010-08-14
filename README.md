@@ -10,7 +10,7 @@ _Author:_ Richard Metzler
 
 ##Table of Contents
 - Introduction
-- OAuth
+- The OAuth Protocol
 - OAuth Example Service
 - Implementing OAuth in HPIIP
 
@@ -23,20 +23,20 @@ For users this enables a more secure and better online experience as they are no
 
 In this paper we describe the OAuth 1.0a protocol. Then we describe our  proposed privacy service that is granted access to the HPI identity provider via OAuth. We explain the changes we made in order to enable OAuth in the HPIIP and how the API works.
 
-## OAuth 
+## The OAuth Protocol 
 
-__OAuth__ is an open protocol to allow secure API authorization in a simple and standard method from desktop and web applications. It enables __users__ to authenticate and authorize 3rd party applications called __OAuth consumers__ to access data that is associated with a __resource__ managed by the __service provider__.
+__OAuth__ is an open protocol to allow secure API authorization in a simple and standard method from desktop and web applications. [OAuth-spec] It enables __users__ to authenticate and authorize 3rd party applications called __OAuth consumers__ to access data that is associated with a __resource__ managed by the __service provider__.
 
 ![OAuth parties](HPI-IP-OAuth/raw/master/OAuth.png)  
 The three different parties in OAuth protocol.
 
-In order to authenticate an user and enabling authorization an OAuth consumer has to be registered at the service provider. Through registration the service provider gets a dedicated consumer key & secret pair that is used for authenticating the service whenever user access is requested. 
+In order to authenticate an user and enabling authorization an OAuth consumer has to be registered at the service provider. Through registration the service provider obtains a dedicated consumer key & secret pair that is used for authenticating the service whenever user access is requested. 
 
 ### OAuth Dance
 
 When a user wants to authenticate a webservice via OAuth the __OAuth authentication flow__ (commonly referred to as OAuth dance) is executed.
  
-The following description is very simplified as details that are important for securing this flow and preventing from replay attacks like the _signature method_ and the _nonce_ are missing from it. The description is first and foremost meant to provide a general understanding of the OAuth authentication flow as an exact description is beyond the scope of the paper.
+The following description is very simplified as details that are important for securing this flow and preventing from replay attacks like the _signature method_ and the _nonce_ are missing from it. The description is first and foremost meant to provide a general understanding of the OAuth authentication flow as an exact description is beyond the scope of this paper.
 
 The authentication flow is started by the user clicking on a special link on the website of the OAuth consumer. The consumer uses his consumer key and secret to request a __unauthorized OAuth request token__ and __secret__ from the service provider. This OAuth token is used to identify the authentication context for the user.
 
@@ -50,15 +50,15 @@ source: [http://dev.twitter.com/pages/auth](http://dev.twitter.com/pages/auth)
 
 ## OAuth Privacy Service for HPIIP
 
-One main feature of the HPIIP is to act as an __identity provider__ and issue __IdentityCards__. These Identity Cards can be used by the user to sign up to a __relying party__. Then the relying party requests the associated attribute values from the identity provider. This could be something like the name or the address of the user. 
+One main feature of the HPIIP is to act as an __identity provider__ and issue __IdentityCards__. These Identity Cards can be used by the user to sign up to a __relying party__. Then the relying party requests the associated attribute values from the identity provider. This could be something like the name, home address or the email address of the user. 
 
 In order to verify email addresses of new signed up users services often send an email with an authentication link. The user has to click this link to verify that this is an valid email address and the user actually owns it.
 
 Often an user only wants to try out a new service but don't want to provide his real email address in fear of SPAM from the service. Our proposed OAuth example service should be able to change the associated email address value of an identity card when it is authorized by the user.
 
-The service changes the value of the email address in an issued identy card every 10 minutes. Whenever a user uses the identity card to sign up to a relying party, the relying party asks the identity provider for the current email address and sends an email. Because the OAuth service forwards emails for 20min to the actual email address of the user and ignores emails send after this the user will receive only the emails from the relying party that are send in this short time window. All emails after this are considered 'SPAM' and ignored. 
+The service changes the value of the email address in an issued identity card every 10 minutes to a temporary valid email address the service has control of. Whenever a user uses the identity card to sign up to a relying party, the relying party asks the identity provider for the current email address and sends an email. Because the OAuth service forwards emails for 20 minutes to the actual email address of the user and ignores emails to the temporary address received thereafter the user will receive only the emails from the relying party that are send in this short time window. All emails received later are considered 'SPAM' and will be ignored. 
 
-This is a sequence diagram of the described behaviour.
+Following is a sequence diagram of the described behaviour.
 ![OAuth Example Service Sequence](HPI-IP-OAuth/raw/master/example-service-seq.png)  
 
 
@@ -70,6 +70,9 @@ This is a sequence diagram of the described behaviour.
 
 ### API-Layer
 
+## Sources
+
+[OAuth-spec]: http://oauth.net/ "OAuth specification"
 [Talk: OpenID vs OAuth](http://www.slideshare.net/rmetzler/identity-on-the-web-openid-vs-oauth)
 
 __TODO: link to 2nd talk__
