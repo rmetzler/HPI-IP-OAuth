@@ -65,6 +65,8 @@ Below is a sequence diagram of the described behaviour.
 
 ## Implementing OAuth in HPIIP
 
+To create 
+
 - Model / View / Controller
 
 ### Web-Layer
