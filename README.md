@@ -61,8 +61,9 @@ The service changes the value of the email address in an issued identity card ev
 Following is a sequence diagram of the described behaviour.
 ![OAuth Example Service Sequence](HPI-IP-OAuth/raw/master/example-service-seq.png)  
 
-
 ## Implementing OAuth in HPIIP
+
+- Model / View / Controller
 
 ### Web-Layer
 
@@ -70,12 +71,21 @@ Following is a sequence diagram of the described behaviour.
 
 ### API-Layer
 
+## Implementing OAuth Privacy Service
+
+Our example service has to be a webservice able to receive and send emails. Because we were not in control of and did not want to set up an own SMTP server we decided to use [Google AppEngine].
+
+Google AppEngine is a _Plattform as a Service_ infrastructure provided by Google. Developers can use Python and Java to programm web application on top of this infrastructure. Like most web frameworks AppEngine also implements the Model-View-Controller pattern.
+
+
 ## Sources
 
-[OAuth-spec]: http://oauth.net/ "OAuth specification"
+
+[OAuth-spec]
+
 [Talk: OpenID vs OAuth](http://www.slideshare.net/rmetzler/identity-on-the-web-openid-vs-oauth)
 
 __TODO: link to 2nd talk__
-__TODO: link to specification__
 
-
+[OAuth-spec]: http://oauth.net/ "OAuth specification"
+[Google AppEngine]: "http://appengine.google.com" "Google AppEngine"
