@@ -48,7 +48,7 @@ When the user returns to the consumer the consumer uses the request token to req
 ![OAuth dance](http://a0.twimg.com/images/dev/oauth_diagram.png)  
 source: [http://dev.twitter.com/pages/auth](http://dev.twitter.com/pages/auth)
 
-## OAuth Privacy Service for HPIIP
+## OAuth Privacy EMail Service for HPIIP
 
 One main feature of the HPIIP is to act as an __identity provider__ and issue __IdentityCards__. These Identity Cards can be used by the user to sign up to a __relying party__. Then the relying party requests the associated attribute values from the identity provider. This could be something like the name, home address or the email address of the user. 
 
@@ -56,9 +56,11 @@ In order to verify email addresses of new signed up users services often send an
 
 Often an user only wants to try out a new service but don't want to provide his real email address in fear of SPAM from the service. Our proposed OAuth example service should be able to change the associated email address value of an identity card when it is authorized by the user.
 
+To grant access to the identity card the user authorize the Privacy EMail Service by clicking on a "Log in to HPI IP" button on the Privacy EMail Service site. The service then acts as a OAuth consumer, redirecting the user's browser to the HPI IP website to login. The user then can grant access of the identity cards to the consumer.
+
 The service changes the value of the email address in an issued identity card every 10 minutes to a temporary valid email address the service has control of. Whenever a user uses the identity card to sign up to a relying party, the relying party asks the identity provider for the current email address and sends an email. Because the OAuth service forwards emails for 20 minutes to the actual email address of the user and ignores emails to the temporary address received thereafter the user will receive only the emails from the relying party that are send in this short time window. All emails received later are considered 'SPAM' and will be ignored. 
 
-Following is a sequence diagram of the described behaviour.
+Below is a sequence diagram of the described behaviour.
 ![OAuth Example Service Sequence](HPI-IP-OAuth/raw/master/example-service-seq.png)  
 
 ## Implementing OAuth in HPIIP
@@ -73,9 +75,11 @@ Following is a sequence diagram of the described behaviour.
 
 ## Implementing OAuth Privacy Service
 
-Our example service has to be a webservice able to receive and send emails. Because we were not in control of and did not want to set up an own SMTP server we decided to use [Google AppEngine].
+Our example service has to be a webservice able to receive and send emails. Because we were not in control of and did not want to set up an own SMTP server we choose to use [Google AppEngine].
 
-Google AppEngine is a _Plattform as a Service_ infrastructure provided by Google. Developers can use Python and Java to programm web application on top of this infrastructure. Like most web frameworks AppEngine also implements the Model-View-Controller pattern.
+Google AppEngine is a _Plattform as a Service_ infrastructure framework provided by Google. Developers can use Python and Java to programm web application on top of this infrastructure. Like most web frameworks AppEngine also implements the Model-View-Controller pattern. The framework also has APIs to receive and send emails and start Cron jobs.
+
+Our Model needs to save OAuth tokens to the database that are associated with the real email address and the temporary valid email address. This is what our modelclass ... in ... .py does.
 
 
 ## Sources
