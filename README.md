@@ -112,7 +112,18 @@ The server must verify the validity of the request. Ig the request is valid and 
 
 Once the client receives and stores the token credentials it can use it to access protected resorces on behalf of the resource owner. To do so the consumer has to use his credentials together with the access token credentials received.
 
+### Making Requests
 
+Whenever the consumer tries to access the user's restricted resource he has to add the OAuth protocol parameters to the request by using the OAuth HTTP "Authorization" header field. The required parameters are:
+
++ _oauth\_consumer\_key_
++ _oauth\_token_
++ _oauth\_signature\_method_
++ _oauth\_timestamp_
++ _oauth\_nonce_
++ _oauth\_signature_
+
+The server has to validate the authenticated request by recalculating the request signature, ensuring that the combination of nonce/timestamp/token has never used before and verify that the scope and status of the authorization as represented by the token is valid. 
 
 ### Web-Layer
 
