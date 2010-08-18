@@ -63,11 +63,42 @@ The service changes the value of the email address in an issued identity card ev
 Below is a sequence diagram of the described behaviour.
 ![OAuth Example Service Sequence](HPI-IP-OAuth/raw/master/example-service-seq.png)  
 
-## Implementing OAuth in HPIIP
+## Implementing OAuth in HPI IP
 
-To create 
+OAuth defines three request endpoint URLs:
++ Request Token URL - we use _/oauth/request\_token_
++ User Authorization URL - we use _/oauth/authorize_
++ Access Token URL - we use _/oauth/access\_token_
+
+We need to implement everyone of these of these endpoints with the Tapestry web framework used by HPI IP.
+
+### Request Token URL
+
+When the consumer sends an HTTP requests to the Request Token URL _/oauth/request\_token_ there must be the following parameters specified:
+
++ realm
++ oauth\_consumer\_key
++ oauth\_signature\_method
++ oauth_callback
++ oauth_signature
+
+The service provider must validate the incoming OAuth message and verify the consumer by checking his credentials against the database. Then the service provider creates a new set of temporary credentials and returns it in a HTTP response body using  _"application/x-www-form-urlencoded"_ content type.
+
+The response contains the following required parameters:
+
++ oauth_token
++ oauth\_token\_secret
++ oauth\_callback\_confirmed
+
+### User Authorization URL
+
+### Access Token URL
+
+sdf
 
 - Model / View / Controller
+
+
 
 ### Web-Layer
 
@@ -93,5 +124,6 @@ Our Model needs to save OAuth tokens to the database that are associated with th
 
 __TODO: link to 2nd talk__
 
+[RFC]: http://tools.ietf.org/html/rfc5849 "RFC 5849"
 [OAuth-spec]: http://oauth.net/ "OAuth specification"
 [Google AppEngine]: "http://appengine.google.com" "Google AppEngine"
