@@ -76,27 +76,41 @@ We need to implement everyone of these of these endpoints with the Tapestry web 
 
 When the consumer sends an HTTP requests to the Request Token URL _/oauth/request\_token_ there must be the following parameters specified:
 
-+ realm
-+ oauth\_consumer\_key
-+ oauth\_signature\_method
-+ oauth_callback
-+ oauth_signature
++ _realm_
++ _oauth\_consumer\_key_
++ _oauth\_signature\_method_
++ _oauth\_callback_
++ _oauth\_signature_
 
 The service provider must validate the incoming OAuth message and verify the consumer by checking his credentials against the database. Then the service provider creates a new set of temporary credentials and returns it in a HTTP response body using  _"application/x-www-form-urlencoded"_ content type.
 
-The response contains the following required parameters:
+If the request was valid the response contains the following url encoded parameters:
 
-+ oauth_token
-+ oauth\_token\_secret
-+ oauth\_callback\_confirmed
++ _oauth\_token_
++ _oauth\_token\_secret_
++ _oauth\_callback\_confirmed_
+
+This oauth token is called the _request token_ and it is used to identify the OAuth authorization flow. 
 
 ### User Authorization URL
 
+After receiving the _request token_ the OAuth consumer redirects the user's web browser to the _authorization url_. The request token must be appended as parameter __oauth\_token__ to the authorization url. 
+
+The provider has to verify the identiy of the user and then ask to authorize the requested access. Therefor the OAuth provider should display informations about the client (like name, url or logo) based on the request token for the user to verify.  
+
+The provider has to delete or mark the request token as used to prevent repeated authorization attempts. If the user authorize the consumer that the user's webbrowser is redirected to the cpnsumer's callback url and _oauth\_token_ and _oauth\_verifier_ are appended as parameters.
+
+
 ### Access Token URL
 
-sdf
+When the user is redirected to the OAuth consumer the consumer uses the _oauth\_verifier_ to obtain the permanen access token. To do this the _oauth\_verifier_ is added to the list of parameters the consumer used to obtain the request token and all parameters are appended to the access token url.
 
-- Model / View / Controller
+The server must verify the validity of the request. Ig the request is valid and authorized the permanent token credentials are includes as "application/x-www-form-urlencoded" content type with status code 200 (OK) in the HTTP response. The parameters are
+
++ _oauth\_token_
++ _oauth\_token\_secret_
+
+Once the client receives and stores the token credentials it can use it to access protected resorces on behalf of the resource owner. To do so the consumer has to use his credentials together with the access token credentials received.
 
 
 
