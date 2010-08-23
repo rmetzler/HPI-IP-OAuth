@@ -103,16 +103,16 @@ The provider has to delete or mark the request token as used to prevent repeated
 
 ### Access Token URL
 
-When the user is redirected to the OAuth consumer the consumer uses the _oauth\_verifier_ to obtain the permanen access token. To do this the _oauth\_verifier_ is added to the list of parameters the consumer used to obtain the request token and all parameters are appended to the access token url.
+When the user is redirected to the OAuth consumer the consumer uses the _oauth\_verifier_ to obtain the permanent access token. To do this the _oauth\_verifier_ is added to the list of parameters the consumer used to obtain the request token and all parameters are appended to the access token url.
 
-The server must verify the validity of the request. Ig the request is valid and authorized the permanent token credentials are includes as "application/x-www-form-urlencoded" content type with status code 200 (OK) in the HTTP response. The parameters are
+The server must verify the validity of the request. If the request is valid and authorized the permanent token credentials are includes as "application/x-www-form-urlencoded" content type with status code 200 (OK) in the HTTP response. The parameters are
 
 + _oauth\_token_
 + _oauth\_token\_secret_
 
 Once the client receives and stores the token credentials it can use it to access protected resorces on behalf of the resource owner. To do so the consumer has to use his credentials together with the access token credentials received.
 
-### Making Requests
+### Making API Requests
 
 Whenever the consumer tries to access the user's restricted resource he has to add the OAuth protocol parameters to the request by using the OAuth HTTP "Authorization" header field. The required parameters are:
 
