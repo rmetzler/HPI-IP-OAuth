@@ -127,11 +127,11 @@ The server has to validate the authenticated request by recalculating the reques
 
 #### Granularity of Rights Management
 
-While most existing OAuth providers (e.g. Twitter) manage rights only at the granularity of allowing or denying read/write access through the validity of the access token it is feasible to manage rights with finer granularity. In fact this is what we need to do in the HPI IP in order to allow users to grant access to some relevant attributes of their identities and deny access for others.
+While most existing OAuth providers (e.g. Twitter) manage rights only at the granularity of of the access token allowing or denying read/write access to every of the user's resources, it is often feasible to manage rights with finer granularity. In fact this is what we need to do in the HPI IP in order to allow users to grant access to some relevant attributes of their identities and deny access for others.
 
-By this means that not only the API the consumers have to use is becoming more complex, the complexity for the user interface to manage access rights for consumers transparently increases too. This can lead to conflicts over privacy issues like it is experienced in Facebook's case.
+By this means that not only the API the consumers have to use is becoming more complex, the complexity for the user interface to manage access rights for consumers transparently increases too. If this problem isn't solved in the user interface it could lead to conflicts over privacy issues like it is the case with Facebook's third party apps.
 
-In order to have maximum finest granularity of rights management we decided to manage rights an the granularity of attributes of each digital identity.
+In order to have maximum fine granularity of rights management we decided to manage rights to every of attributes of each digital identity seperatly.
 
 ### Web-Layer
 
