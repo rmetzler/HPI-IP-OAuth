@@ -98,7 +98,7 @@ After receiving the _request token_ the OAuth consumer redirects the user's web 
 
 The provider has to verify the identiy of the user and then ask to authorize the requested access. Therefor the OAuth provider should display informations about the client (like name, url or logo) based on the request token for the user to verify.  
 
-The provider has to delete or mark the request token as used to prevent repeated authorization attempts. If the user authorize the consumer that the user's webbrowser is redirected to the cpnsumer's callback url and _oauth\_token_ and _oauth\_verifier_ are appended as parameters.
+The provider has to delete or mark the request token as used to prevent repeated authorization attempts. If the user authorize the consumer that the user's webbrowser is redirected to the consumer's callback url and _oauth\_token_ and _oauth\_verifier_ are appended as parameters.
 
 
 ### Access Token URL
@@ -124,6 +124,14 @@ Whenever the consumer tries to access the user's restricted resource he has to a
 + _oauth\_signature_
 
 The server has to validate the authenticated request by recalculating the request signature, ensuring that the combination of nonce/timestamp/token has never used before and verify that the scope and status of the authorization as represented by the token is valid. 
+
+#### Granularity of Rights Management
+
+While most existing OAuth providers (e.g. Twitter) manage rights only at the granularity of allowing or denying read/write access through the validity of the access token it is feasible to manage rights with finer granularity. In fact this is what we need to do in the HPI IP in order to allow users to grant access to some relevant attributes of their identities and deny access for others.
+
+By this means that not only the API the consumers have to use is becoming more complex, the complexity for the user interface to manage access rights for consumers transparently increases too. This can lead to conflicts over privacy issues like it is experienced in Facebook's case.
+
+In order to have maximum finest granularity of rights management we decided to manage rights an the granularity of attributes of each digital identity.
 
 ### Web-Layer
 
