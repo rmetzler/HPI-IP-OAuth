@@ -135,6 +135,17 @@ By this means that not only the API consumers use is becoming more complex, the 
 
 In order to have maximum fine granularity of rights management we decided to manage rights to every of attributes of each digital identity seperatly.
 
+#### Accessing the User's Restricted Resources
+
+In today's internet world there are many different technologies for providing API access but RESTful Web Services prevail. We decided to build the neccessary API in a restful way.
+
+TODO: cite \[REST\]
+
+The OAuth access token is essentially the right to access some of the associated user's restricted resources. The OAuth client has to query the API to find out which specific resources it can access in behalf of the user. Therefor we need one URL endpoint that is the same for every user. By querying it with the access token the consumer specifies the user and gets some more 
+
+ 
+Having a simple rights management model simplifies the accessability.
+
 ### Web-Layer
 
 ### Persistence-Layer
@@ -145,10 +156,13 @@ In order to have maximum fine granularity of rights management we decided to man
 
 Our example service has to be a webservice able to receive and send emails. Because we were not in control of and did not want to set up an own SMTP server we choose to use [Google AppEngine].
 
-Google AppEngine is a _Plattform as a Service_ infrastructure framework provided by Google. Developers can use Python and Java (in fact every Language that can be run on top of the Java VM) to programm web applications for this infrastructure. Like most web frameworks Google AppEngine also implements the _Model-View-Controller (MVC) pattern_. The framework also has APIs to receive and send emails and start Cron jobs.
+Google AppEngine is a _Plattform as a Service_ infrastructure framework provided by Google. Developers can use Python and Java (in fact every programming language that can be run on the Java VM) to programm web applications for this infrastructure. Like most web frameworks Google AppEngine also implements the _Model-View-Controller (MVC) pattern_. The framework also has APIs to receive and send emails and start Cron jobs.
 
 Our Model needs to save OAuth tokens to the database that are associated with the real email address and the temporary valid email address. This is what our modelclass ... in ... .py does.
 
+When an user can clicks on the "login with HPIIP" at the service application website he will redirected to the HPI IP where he can login and grant access to the service. He then will be redirected back to the application and can complete the setup. The service can now access the restricted ressources in behalf of the user.
+
+We can configure a cron job that will call a specific method recurrently every 10 minutes to set up a new temporary email address and use the API of the HPI IP to store it as configured by the user.
 
 ## Sources
 
@@ -162,3 +176,5 @@ __TODO: link to 2nd talk__
 [RFC]: http://tools.ietf.org/html/rfc5849 "RFC 5849"
 [OAuth-spec]: http://oauth.net/ "OAuth specification"
 [Google AppEngine]: "http://appengine.google.com" "Google AppEngine"
+
+\[REST\]: Richardson, Leonard, and Sam Ruby. RESTful Web Services: Web Services for the Real World. O'Reilly, 2007. Print.
