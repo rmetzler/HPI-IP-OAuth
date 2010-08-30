@@ -1,7 +1,7 @@
 Integrating OAuth Protocol in HPI Identity Provider
 ===================================================
 
-_Abstract:_ People using very many different internet services today. It is hard for users to remember all these different usernames and passwords so they often use the same username and password on different sites. This is a security issue that protocols like OpenID an OAuth try to solve. By creating a single online identity and allowing 3rd party sites to authenticate users an identity provider is able to solve the security issue and enable single sign-on (SSO) above different websites.
+_Abstract:_ Today people are using many different internet services per day. It is hard for users to remember different usernames and passwords for every service they use so they often reuse the same username and password on different sites. This is a security issue that protocols like OpenID and OAuth try to solve. By creating a single online identity and allowing third party sites to authenticate users an identity provider is able to solve the security issue and enable single sign-on (SSO) above different websites.
 
 _Keywords:_ OAuth, SSO, online identity, identity provider, API security
 
@@ -17,32 +17,33 @@ _Author:_ Richard Metzler
 
 ## Introduction
 
-Every day people use many different internet websites for their online activities. While some of these websites are used by only a few to several thousend people, some other websites like webbased email programms or social networking websites are visited by millions of users on a daily basis. Google's GMail, Facebook and Twitter are aiming to become the center of our online activities and therefor the provider of our online identity. One way to achieve this is to enable 3rd party sites to allow users to sign up with accounts from these sites. This is possible through protocols like OpenID and OAuth that are able to authenticate a user and redirect him back to the 3rd party website.
+Every day people use many different internet websites for their online activities. While some of these websites are used by only a few to several thousend people, some other websites like webbased email programms or social networking websites are visited by millions of users on a daily basis. Google's GMail online email application, Facebook and Twitter aim to become the center of our online activities and therefor the single provider of our online identity. One way for them to achieve this is to enable 3rd party sites to allow users to sign up and log in with accounts from the identity provider. This is possible through online identity protocols like OpenID and OAuth that are able to authenticate a user and redirect him back to the third party website.
 
-For users this feature enables a more secure and better online experience as they are not required to register  with username and password at every website they want to try out. For the third party service this often means that their sign-up conversion rate can dramatically increase.
+For users this feature enables a more secure and better online experience as they are not required to register with username and password at every website they want to try out. For the third party service this often means that their sign-up conversion rate can dramatically increase.
 
 In this paper we describe the OAuth 1.0a protocol. Then we describe our proposed privacy service that is granted access to the HPI identity provider via OAuth. We explain the changes we made in order to enable OAuth in the HPI-IP and how the API works.
 
 ## The OAuth Protocol 
 
-__OAuth__ is an open protocol to allow secure API authorization in a simple and standard method from desktop and web applications. [OAuth-spec] It enables __users__ to authenticate and authorize 3rd party applications called __OAuth consumers__ to access data that is associated with a __resource__ managed by the __service provider__.
+__OAuth__ is an open protocol to allow secure API authorization in a simple and standard method from desktop and web applications. [OAuth-spec] It enables __users__ to authenticate and authorize 3rd party applications called __OAuth consumers__ to access data that is associated with a __restricted resource__ managed by the __service provider__.
 
 ![OAuth parties](HPI-IP-OAuth/raw/master/OAuth.png)  
-The three different parties in OAuth protocol.
+Image: The three different parties in OAuth protocol. The user owns the restricted resource and can grant access to it.
 
-In order to authenticate an user and enabling authorization an OAuth consumer has to be registered at the service provider. Through registration the service provider obtains a dedicated consumer key & secret pair that is used for authenticating the service whenever user access is requested. 
+In order to authenticate an user and enabling authorization an OAuth consumer has to be registered at the service provider beforehand. Through registration the service provider obtains a dedicated consumer key & secret pair that is used for authenticating the service whenever user access is requested.
+This is an significant difference towards the OpenID protocol where identity provider and relying party don't need to know each other and the authentification is done decentral. 
 
 ### OAuth Dance
 
-When a user wants to authenticate a webservice via OAuth the __OAuth authentication flow__ (commonly referred to as OAuth dance) is executed.
+When a user wants to authenticate a webservice via OAuth the __OAuth authentication flow__ (commonly referred to as the OAuth dance) is executed.
  
-The following description is very simplified as details that are important for securing this flow and preventing from replay attacks like the _signature method_ and the _nonce_ are missing from it. The description is first and foremost meant to provide a general understanding of the OAuth authentication flow as an exact description is beyond the scope of this paper.
+The following description is a simplified OAuth description as details important for securing the authorization flow and protect it from replay attacks like the _signature method_ and the _nonce_ are ommitted. The description is first and foremost meant to provide a general understanding of the OAuth authentication flow as an full description is beyond the scope of this paper.
 
-The authentication flow is started by the user clicking on a special link on the website of the OAuth consumer. The consumer uses his consumer key and secret to request a __unauthorized OAuth request token__ and __secret__ from the service provider. This OAuth token is used to identify the authentication context for the user.
+The authentication flow is started by the user clicking on a special link on the website of the OAuth consumer. The consumer uses his consumer key and secret to request an __unauthorized OAuth request token__ and __secret__ from the service provider. This OAuth token is used to identify the authentication context for the user.
 
-After obtaining the request token, the user is redirected from the consumer to the service provider. Thereby the request token is appended on the URL. The user is authenticated and can now authorize the consumer. The service provider directs the user back to the consumer.
+After obtaining the request token, the user is redirected from the consumer to the service provider. Thereby the request token is appended to the URL. The user is authenticated and can now authorize the consumer. After the user granted access to the restricted resource the service provider directs the user's web agent back to the consumer. A _verifier_ is appended to the callback url.
 
-When the user returns to the consumer the consumer uses the request token to request an __access token__ & secret from the service provider. The service provider exchanges the request token for the access token thereby granting access to the user's resource(s) as long as the token is valid.
+When the user returns to the consumer the consumer uses request token and verifier to request an __access token__ and the associated secret from the service provider. The service provider exchanges the request token for the access token thereby granting access to the user's resource(s) as long as the token is valid.
 
 
 ![OAuth dance](http://a0.twimg.com/images/dev/oauth_diagram.png)  
@@ -50,15 +51,15 @@ source: [http://dev.twitter.com/pages/auth](http://dev.twitter.com/pages/auth)
 
 ## OAuth Privacy EMail Service for HPIIP
 
-One main feature of the HPIIP is to act as an __identity provider__ and issue __IdentityCards__. These Identity Cards can be used by the user to sign up to a __relying party__. Then the relying party requests the associated attribute values from the identity provider. This could be something like the name, home address or the email address of the user. 
+One main feature of the HPIIP is to act as an __identity provider__ and issue __IdentityCards__. These Identity Cards can be used by the user to sign up to a __relying party__, allowing the relying party requests associated attribute values from the identity provider. These attributes could be something like the name, home address or the email address of the user. 
 
-In order to verify email addresses of new signed up users services often send an email with an authentication link. The user has to click this link to verify that this is an valid email address and the user actually owns it.
+In order to verify email addresses of new signed up users services often send an email with a verification link. The user has to click this link to verify that he signed up with a valid email address and the user actually owns it.
 
-Often an user only wants to try out a new service but don't want to provide his real email address in fear of SPAM from the service. Our proposed OAuth example service should be able to change the associated email address value of an identity card when it is authorized by the user.
+Often an user only wants to try out a new service but want to ensure his privacy and don't want to provide his real email address in fear of SPAM from the service. Our proposed OAuth example service should be able to change the associated email address value of an identity card when it is authorized by the user.
 
 To grant access to the identity card the user authorize the Privacy EMail Service by clicking on a "Log in to HPI IP" button on the Privacy EMail Service site. The service then acts as a OAuth consumer, redirecting the user's browser to the HPI IP website to login. The user then can grant access of the identity cards to the consumer.
 
-The service changes the value of the email address in an issued identity card every 10 minutes to a temporary valid email address the service has control of. Whenever a user uses the identity card to sign up to a relying party, the relying party asks the identity provider for the current email address and sends an email. Because the OAuth service forwards emails for 20 minutes to the actual email address of the user and ignores emails to the temporary address received thereafter the user will receive only the emails from the relying party that are send in this short time window. All emails received later are considered 'SPAM' and will be ignored. 
+The service changes the value of the email address in an issued identity card every 10 minutes to a temporary valid email address the service has control of. Whenever a user sign up to a relying party with his identity card, the relying party request the current email address attribute from the identity provider and sends an email. The identity provider will return the temporary email adress. Because the OAuth service forwards emails for 20 minutes to the actual email address of the user and ignores emails to the temporary address received thereafter the user will receive only the emails from the relying party that are send in this short time window. All emails received later are considered 'SPAM' and will be ignored.
 
 Below is a sequence diagram of the described behaviour.
 ![OAuth Example Service Sequence](HPI-IP-OAuth/raw/master/example-service-seq.png)  
@@ -66,11 +67,12 @@ Below is a sequence diagram of the described behaviour.
 ## Implementing OAuth in HPI IP
 
 OAuth defines three request endpoint URLs:
+
 + Request Token URL - we use _/oauth/request\_token_
 + User Authorization URL - we use _/oauth/authorize_
 + Access Token URL - we use _/oauth/access\_token_
 
-We need to implement everyone of these of these endpoints with the Tapestry web framework used by HPI IP.
+These endpoints are required to be implemented with the Apache Tapestry5 webframework that is used within the HPI IP.
 
 ### Request Token URL
 
@@ -94,11 +96,11 @@ This oauth token is called the _request token_ and it is used to identify the OA
 
 ### User Authorization URL
 
-After receiving the _request token_ the OAuth consumer redirects the user's web browser to the _authorization url_. The request token must be appended as parameter __oauth\_token__ to the authorization url. 
+After receiving the _request token_ the OAuth consumer redirects the user's web browser to the _authorization url_ with the request token appended as parameter __oauth\_token__. 
 
-The provider has to verify the identiy of the user and then ask to authorize the requested access. Therefor the OAuth provider should display informations about the client (like name, url or logo) based on the request token for the user to verify.  
+The provider has to verify the identiy of the user and then ask to authorize the requested access. Therefor the OAuth provider should display informations about the client based on the request token  (like the OAuth client's name, url or logo) for the user to verify.  
 
-The provider has to delete or mark the request token as used to prevent repeated authorization attempts. If the user authorize the consumer that the user's webbrowser is redirected to the consumer's callback url and _oauth\_token_ and _oauth\_verifier_ are appended as parameters.
+To prevent repeated authorization attempts the provider has to delete or mark the request token as used. If the user authorize the consumer the user's webbrowser is redirected to the consumer's callback url and _oauth\_token_ and _oauth\_verifier_ are appended as parameters.
 
 
 ### Access Token URL
@@ -123,13 +125,13 @@ Whenever the consumer tries to access the user's restricted resource he has to a
 + _oauth\_nonce_
 + _oauth\_signature_
 
-The server has to validate the authenticated request by recalculating the request signature, ensuring that the combination of nonce/timestamp/token has never used before and verify that the scope and status of the authorization as represented by the token is valid. 
+The server has to validate the authenticated request by recalculating the request signature, ensuring that the combination of _nonce / timestamp / token_ has never used before and verify that the scope and status of the authorization as represented by the OAuth request token is valid. 
 
 #### Granularity of Rights Management
 
-While most existing OAuth providers (e.g. Twitter) manage rights only at the granularity of of the access token allowing or denying read/write access to every of the user's resources, it is often feasible to manage rights with finer granularity. In fact this is what we need to do in the HPI IP in order to allow users to grant access to some relevant attributes of their identities and deny access for others.
+While most existing OAuth providers (e.g. Twitter) manage rights only at the granularity of of the access token allowing or denying read/write access to every of the user's resources, it is often feasible to manage rights with finer granularity. In fact this is what we need to do in the HPI IP in order to allow users to grant access to some relevant attributes of their identities and deny access to others.
 
-By this means that not only the API the consumers have to use is becoming more complex, the complexity for the user interface to manage access rights for consumers transparently increases too. If this problem isn't solved in the user interface it could lead to conflicts over privacy issues like it is the case with Facebook's third party apps.
+By this means that not only the API consumers use is becoming more complex, the complexity for the user interface to manage access rights for consumers transparently increases too. If this problem isn't solved in the user interface it could lead to conflicts over privacy issues like it is the case with Facebook's third party apps.
 
 In order to have maximum fine granularity of rights management we decided to manage rights to every of attributes of each digital identity seperatly.
 
@@ -143,7 +145,7 @@ In order to have maximum fine granularity of rights management we decided to man
 
 Our example service has to be a webservice able to receive and send emails. Because we were not in control of and did not want to set up an own SMTP server we choose to use [Google AppEngine].
 
-Google AppEngine is a _Plattform as a Service_ infrastructure framework provided by Google. Developers can use Python and Java to programm web application on top of this infrastructure. Like most web frameworks AppEngine also implements the Model-View-Controller pattern. The framework also has APIs to receive and send emails and start Cron jobs.
+Google AppEngine is a _Plattform as a Service_ infrastructure framework provided by Google. Developers can use Python and Java (in fact every Language that can be run on top of the Java VM) to programm web applications for this infrastructure. Like most web frameworks Google AppEngine also implements the _Model-View-Controller (MVC) pattern_. The framework also has APIs to receive and send emails and start Cron jobs.
 
 Our Model needs to save OAuth tokens to the database that are associated with the real email address and the temporary valid email address. This is what our modelclass ... in ... .py does.
 
