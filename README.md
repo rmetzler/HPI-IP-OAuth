@@ -146,17 +146,20 @@ The OAuth access token is essentially the right to access some of the associated
 The representation of this resource in JSON should be something like this, showing only the values that are available to the requesting consumer:
 
 	{
-		'user' : {
-			'username' : 'richard.metzler',
-			'identities' : [
+		"user" : {
+			"username" : "richard.metzler",
+			"identities" : [
 				{
-					'main identity' : {
-						'email' : {
-							'value' : 'richard@...',
-							'resource' : 'HPIIP/api/attribute/123456',
-							'writable' : true
-						}
-					}
+					"main identity" : [
+						{
+							"id" : "123456"
+							"attribute" : "email",
+							"value" : "richard@...",
+							"resource" : "HPIIP/api/attribute/123456",
+							"writable" : true
+						}, ...
+					]
+					
 				}, ...
 			]
 		}
@@ -165,11 +168,15 @@ The representation of this resource in JSON should be something like this, showi
 As you can see, the 3rd party service is able to find out the resource for reading and updating the email resource. Reading is done with an HTTP GET request, while updating is by sending an HTTP POST request to the _HPIIP/api/attribute/{id}_ resource. The resource is again represented in JSON format:
 
 	{
-		'value' : 'richard@...',
-		'writable' : true
-	} 
+		"id" : "123456"
+		"attribute" : "email",
+		"value" : "richard@...",
+		"resource" : "HPIIP/api/attribute/123456",
+		"writable" : true
+	}
+ 
 
-If the client updates the value the attribute _writable_ is ommitted.
+If the client updates the value the attribute only the attribute _value_ needs to be in representation.
 
 Whenever an OAuth consumer wants to access a resouce the OAuth provider has to check for if this resource is available with the **ERFORDERLICH** operation.
 
