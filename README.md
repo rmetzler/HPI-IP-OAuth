@@ -152,7 +152,7 @@ The representation of this resource in JSON should be something like this, showi
 				{
 					"main identity" : [
 						{
-							"id" : "123456"
+							"id" : "123456",
 							"attribute" : "email",
 							"value" : "richard@...",
 							"resource" : "HPIIP/api/attribute/123456",
@@ -179,6 +179,14 @@ As you can see, the 3rd party service is able to find out the resource for readi
 If the client updates the value the attribute only the attribute _value_ needs to be in representation.
 
 Whenever an OAuth consumer wants to access a resouce the OAuth provider has to verify if the requested operation is granted to provided access token. It has to be denied otherwise using the HTTP response code __401 ("Unauthorized")__.
+
+#### Implementation
+
+The proposed implementation of the described API is to use _Jersey_, Sun's implementation of the JAX-RS specification. JAX-RS describes a Java API to build RESTful webservices by using Java5 style annotations. These webservices have to run in a servlet container like Apache Tomcat or Jetty.
+
+Because the existing HPI IP uses the Tapestry5 webframework we had to decide if the API and the existing application should be deployed next to each other and use their own database bindings or deploy it as one application in the same directory. Because we wanted to reuse the existing database bindings we decided to use the Tapestry-Jersey integration provided by Blue Tang Studio **TODO: LINK**.
+
+
 
 
 ## Implementing OAuth Privacy Service
