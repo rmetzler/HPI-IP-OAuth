@@ -8,13 +8,6 @@ _Keywords:_ OAuth, SSO, online identity, identity provider, API security
 _Author:_ Richard Metzler
 
 
-##Table of Contents
-- Introduction
-- The OAuth Protocol
-- OAuth Example Service
-- Implementing OAuth in HPIIP
-
-
 ## Introduction
 
 Every day people use many different internet websites for their online activities. While some of these websites are used by only a few to several thousend people, some other websites like webbased email programms or social networking websites are visited by millions of users on a daily basis. Google's GMail online email application, Facebook and Twitter aim to become the center of our online activities and therefor the single provider of our online identity. One way for them to achieve this is to enable 3rd party sites to allow users to sign up and log in with accounts from the identity provider. This is possible through online identity protocols like OpenID and OAuth that are able to authenticate a user and redirect him back to the third party website.
@@ -116,7 +109,7 @@ Once the client receives and stores the token credentials it can use it to acces
 
 ### Implementing OAuth
 
-If you have to implement an OAuth consumer you can find many client implementations in every programming language possible. Unfortunately the same does not hold for implementing an OAuth provider. While there are various implementations for scripting languages (notably Ruby, Python and PHP) we have found only one example implementation for Java. This implementation unfortunately isn't much more than an example implementation and not a framework where the developer just provides the persistence layer and the web layer and gets the logic for creating the tokens for free.
+If you have to implement an OAuth consumer you can find many client implementations in every programming language possible. Unfortunately the same does not hold for implementing an OAuth provider. While there are various implementations for scripting languages (notably Ruby, Python and PHP) we have found only one example implementation for Java. This implementation unfortunately isn't a simple to use framework where the developer just provides the persistence layer and the web layer and gets the logic for creating the tokens for free. Much rather it is nothing more than an example implementation. 
 
 
 ## Making API Requests
