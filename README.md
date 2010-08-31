@@ -168,7 +168,7 @@ The representation of this resource in JSON should be something like this, showi
 As you can see, the 3rd party service is able to find out the resource for reading and updating the email resource. Reading is done with an HTTP GET request, while updating is by sending an HTTP POST request to the _HPIIP/api/attribute/{id}_ resource. The resource is again represented in JSON format:
 
 	{
-		"id" : "123456"
+		"id" : "123456",
 		"attribute" : "email",
 		"value" : "richard@...",
 		"resource" : "HPIIP/api/attribute/123456",
