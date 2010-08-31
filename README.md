@@ -210,8 +210,9 @@ Applications running on Google AppEngine are able to receive and send mails. Whe
 
 __TODO: link to 2nd talk__
 
-[RFC]: http://tools.ietf.org/html/rfc5849 "RFC 5849"
-[OAuth-spec]: http://oauth.net/ "OAuth specification"
-[Google AppEngine]: "http://appengine.google.com" "Google AppEngine"
-
-\[REST\]: Richardson, Leonard, and Sam Ruby. RESTful Web Services: Web Services for the Real World. O'Reilly, 2007. Print.
+* [RFC][RFC]: http://tools.ietf.org/html/rfc5849 "RFC 5849"
+* [OAuth-spec][OAuth-spec]: http://oauth.net/ "OAuth specification"
+* [Google AppEngine][Google AppEngine]: "http://appengine.google.com" "Google AppEngine"
+* [REST][REST]: Richardson, Leonard, and Sam Ruby. RESTful Web Services: Web Services for the Real World. O'Reilly, 2007. Print.
+* [1][1]: Tapestry-Jersey integration: http://github.com/yunglin/tapestry-jersey
+* [2][2]: Tapestry-Jersey wiki: http://wiki.github.com/yunglin/tapestry-jersey/
