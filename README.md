@@ -182,7 +182,7 @@ Whenever an OAuth consumer wants to access a resouce the OAuth provider has to v
 
 The proposed implementation of the described API is to use _Jersey_, Sun's implementation of the JAX-RS specification. JAX-RS describes a Java API to build RESTful webservices by using Java5 style annotations. These webservices have to run in a servlet container like Apache Tomcat or Jetty.
 
-Because the existing HPI IP uses the Tapestry5 webframework we had to decide if the API and the existing application should be deployed next to each other and use their own database bindings or deploy it as one application in the same directory. Because we wanted to reuse the existing database bindings we decided to use the Tapestry-Jersey integration provided by Blue Tang Studio **TODO: LINK**.
+Because the existing HPI IP uses the Tapestry5 webframework we had to decide if the API and the existing application should be deployed next to each other and use their own database bindings or deploy it as one application in the same directory. Because we wanted to reuse the existing database bindings we decided to use the Tapestry-Jersey integration provided by Blue Tang Studio.\[1]\[2]
 
 
 
@@ -203,16 +203,10 @@ Applications running on Google AppEngine are able to receive and send mails. Whe
 
 ## Sources
 
-
-[OAuth-spec]
-
-[Talk: OpenID vs OAuth](http://www.slideshare.net/rmetzler/identity-on-the-web-openid-vs-oauth)
-
-__TODO: link to 2nd talk__
-
-* [RFC][RFC]: http://tools.ietf.org/html/rfc5849 "RFC 5849"
-* [OAuth-spec][OAuth-spec]: http://oauth.net/ "OAuth specification"
-* [Google AppEngine][Google AppEngine]: "http://appengine.google.com" "Google AppEngine"
-* [REST][REST]: Richardson, Leonard, and Sam Ruby. RESTful Web Services: Web Services for the Real World. O'Reilly, 2007. Print.
-* [1][1]: Tapestry-Jersey integration: http://github.com/yunglin/tapestry-jersey
-* [2][2]: Tapestry-Jersey wiki: http://wiki.github.com/yunglin/tapestry-jersey/
+* \[RFC] RFC 5849 : [http://tools.ietf.org/html/rfc5849](http://tools.ietf.org/html/rfc5849)
+* \[OAuth-spec] OAuth specification : [http://oauth.net/](http://oauth.net/)
+* \[Google AppEngine] Google AppEngine : [http://appengine.google.com](http://appengine.google.com)
+* \[REST\] Richardson, Leonard, and Sam Ruby. RESTful Web Services: Web Services for the Real World. O'Reilly, 2007. Print.
+* \[1] Tapestry-Jersey integration: [http://github.com/yunglin/tapestry-jersey](http://github.com/yunglin/tapestry-jersey)
+* \[2] Tapestry-Jersey wiki: [http://wiki.github.com/yunglin/tapestry-jersey/](http://wiki.github.com/yunglin/tapestry-jersey/)
+* [OpenID-vs-OAuth] Metzler. OpenID vs OAuth. 2010. Talk. [http://www.slideshare.net/rmetzler/identity-on-the-web-openid-vs-oauth](http://www.slideshare.net/rmetzler/identity-on-the-web-openid-vs-oauth)
