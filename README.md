@@ -1,4 +1,4 @@
-Integrating OAuth Protocol in HPI Identity Provider
+Integrating the OAuth Protocol in HPI Identity Provider
 ===================================================
 
 _Abstract:_ Today people are using many different internet services per day. It is hard for users to remember different usernames and passwords for every service they use so they often reuse the same username and password on different sites. This is a security issue that protocols like OpenID and OAuth try to solve. By creating a single online identity and allowing third party sites to authenticate users an identity provider is able to solve the security issue and enable single sign-on (SSO) above different websites.
@@ -137,14 +137,43 @@ In order to have maximum fine granularity of rights management we decided to man
 
 #### Accessing the User's Restricted Resources
 
-In today's internet world there are many different technologies for providing API access but RESTful Web Services prevail. We decided to build the neccessary API in a restful way.
+In today's internet world there are many different technologies for providing API access but RESTful Web Services prevail. We decided to build the neccessary API in a restful way. This way we have to decide which resources should be available and how they are represented. \[REST\]
 
-TODO: cite \[REST\]
+The OAuth access token is essentially the right to access some of the associated user's restricted resources. The OAuth client has to query the API to find out which specific resources it can access in behalf of the user. Therefor we need one URL endpoint that is the same for every user. By querying it with the access token the consumer specifies the user and gets some more information about which resources are accessable with the provided token.
 
-The OAuth access token is essentially the right to access some of the associated user's restricted resources. The OAuth client has to query the API to find out which specific resources it can access in behalf of the user. Therefor we need one URL endpoint that is the same for every user. By querying it with the access token the consumer specifies the user and gets some more 
++ the resource of the user who granted the access token should be _HPIIP/api/user_
 
- 
-Having a simple rights management model simplifies the accessability.
+The representation of this resource in JSON should be something like this, showing only the values that are available to the requesting consumer:
+
+{'user' : {
+	'username' : 'richard.metzler',
+	'identities' : [{
+		'main identity' : {
+			'email' : {
+				'value' : 'richard@...',
+				'resource' : 'HPIIP/api/attribute/123456',
+				'writable' : true
+			}
+			
+		}, {...}
+		]
+	}
+}
+}
+
+As you can see, the 3rd party service is able to find out the resource for reading and updating the email resource. Reading is done with an HTTP GET request, while updating is by sending an HTTP POST request to the _HPIIP/api/attribute/{id}_ resource. The resource is again represented in JSON format:
+
+{
+	'value' : 'richard@...',
+	'writable' : true
+} 
+
+If the client updates the value the attribute _writable_ is ommitted.
+
+Whenever an OAuth consumer wants to access a resouce the OAuth provider has to check for if this resource is available with the **ERFORDERLICH** operation.
+
+__REMOVE__ 
+  Having a simple rights management model simplifies the accessability.
 
 ### Web-Layer
 
@@ -160,7 +189,7 @@ Google AppEngine is a _Plattform as a Service_ infrastructure framework provided
 
 Our Model needs to save OAuth tokens to the database that are associated with the real email address and the temporary valid email address. This is what our modelclass ... in ... .py does.
 
-When an user can clicks on the "login with HPIIP" at the service application website he will redirected to the HPI IP where he can login and grant access to the service. He then will be redirected back to the application and can complete the setup. The service can now access the restricted ressources in behalf of the user.
+When an user clicks on the "login with HPIIP" at the service application website he will be redirected to the HPI IP where he can login and grant access to the service. After granting access he then will be redirected back to the application and can complete the setup. The service is now able to access the restricted ressources in behalf of the user.
 
 We can configure a cron job that will call a specific method recurrently every 10 minutes to set up a new temporary email address and use the API of the HPI IP to store it as configured by the user.
 
