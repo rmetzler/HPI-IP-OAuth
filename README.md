@@ -114,7 +114,12 @@ The server must verify the validity of the request. If the request is valid and 
 
 Once the client receives and stores the token credentials it can use it to access protected resorces on behalf of the resource owner. To do so the consumer has to use his credentials together with the access token credentials received.
 
-### Making API Requests
+### Implementing OAuth
+
+If you have to implement an OAuth consumer you can find many client implementations in every programming language possible. Unfortunately the same does not hold for implementing an OAuth provider. While there are various implementations for scripting languages (notably Ruby, Python and PHP) we have found only one example implementation for Java. This implementation unfortunately isn't much more than an example implementation and not a framework where the developer just provides the persistence layer and the web layer and gets the logic for creating the tokens for free.
+
+
+## Making API Requests
 
 Whenever the consumer tries to access the user's restricted resource he has to add the OAuth protocol parameters to the request by using the OAuth HTTP "Authorization" header field. The required parameters are:
 
@@ -127,7 +132,7 @@ Whenever the consumer tries to access the user's restricted resource he has to a
 
 The server has to validate the authenticated request by recalculating the request signature, ensuring that the combination of _nonce / timestamp / token_ has never used before and verify that the scope and status of the authorization as represented by the OAuth request token is valid. 
 
-#### Granularity of Rights Management
+### Granularity of Rights Management
 
 While most existing OAuth providers (e.g. Twitter) manage rights only at the granularity of of the access token allowing or denying read/write access to every of the user's resources, it is often feasible to manage rights with finer granularity. In fact this is what we need to do in the HPI IP in order to allow users to grant access to some relevant attributes of their identities and deny access to others.
 
@@ -135,7 +140,7 @@ By this means that not only the API consumers use is becoming more complex, the 
 
 In order to have maximum fine granularity of rights management we decided to manage rights to every of attributes of each digital identity seperatly.
 
-#### Accessing the User's Restricted Resources
+### Accessing the User's Restricted Resources
 
 In today's internet world there are many different technologies for providing API access but RESTful Web Services prevail. We decided to build the neccessary API in a restful way using URLs to name resources, HTTP verbs for methods and HTTP response codes to signal results. \[REST\] This way we have to decide which resources should be available and how they are represented.
 
@@ -180,7 +185,7 @@ If the client updates the value the attribute only the attribute _value_ needs t
 
 Whenever an OAuth consumer wants to access a resouce the OAuth provider has to verify if the requested operation is granted to provided access token. It has to be denied otherwise using the HTTP response code __401 ("Unauthorized")__.
 
-#### Implementation
+### Implementation
 
 The proposed implementation of the described API is to use _Jersey_, Sun's implementation of the JAX-RS specification. JAX-RS describes a Java API to build RESTful webservices by using Java5 style annotations. These webservices have to run in a servlet container like Apache Tomcat or Jetty.
 
