@@ -1,12 +1,13 @@
 \section{The OAuth Protocol}
 
 \textbf{OAuth} is an open protocol to allow secure API
-authorization in a simple and standard method from desktop and web
-applications. [OAuth-spec] It enables \textbf{users} to
-authenticate and authorize 3rd party applications called
+authorization in a simple and standard message flow from desktop and web
+applications. \cite{oauth} \cite{rfc}
+It enables \textbf{users} to
+authenticate through a \textbf{service provider} and authorize third party applications called
 \textbf{OAuth consumers} to access data that is associated with a
 \textbf{restricted resource} managed by the
-\textbf{service provider}.
+service provider.
 
 \begin{figure}
 	\centering
@@ -14,16 +15,16 @@ authenticate and authorize 3rd party applications called
 	\caption{The three parties in OAuth protocol. The user owns the restricted resource and can grant access to it.}
 \end{figure}
 
-In order to authenticate an user and enabling authorization an
+In order to authenticate an user and enable authorization an
 OAuth consumer has to be registered at the service provider
 beforehand. Through registration the service provider obtains a
 dedicated consumer key \& secret pair that is used for
 authenticating the service whenever user access is requested. This
 is an significant difference towards the OpenID protocol where
 identity provider and relying party don't need to know each other
-and the authentification is done decentral.
+and the authentification is done decentral. \cite{openid} 
 
-\subsection{OAuth Dance}
+\subsection{OAuth authentication flow}
 
 When a user wants to authenticate a webservice via OAuth the
 \textbf{OAuth authentication flow} (commonly referred to as the
@@ -31,15 +32,15 @@ OAuth dance) is executed.
 
 The following description is a simplified OAuth description as
 details important for securing the authorization flow and protect
-it from replay attacks like the \emph{signature method} and the
+it from replay attacks like the \emph{signature method} and
 \emph{nonce} are ommitted. The description is first and foremost
 meant to provide a general understanding of the OAuth
 authentication flow as an full description is beyond the scope of
 this paper.
 
-The authentication flow is started by the user clicking on a
-special link on the website of the OAuth consumer. The consumer
-uses his consumer key and secret to request an
+The authentication flow pictured in Fig. \ref{pic:oauth-flow} is started
+by the user clicking on a special link on the website of the OAuth consumer.
+The consumer uses his consumer key and secret to request an
 \textbf{unauthorized OAuth request token} and \textbf{secret} from
 the service provider. This OAuth token is used to identify the
 authentication context for the user.
@@ -60,9 +61,10 @@ access to the user's resource(s) as long as the token is valid.
 
 
 \begin{figure}
+	\label{pic:oauth-flow} 
 	\centering
 	\includegraphics[width=\textwidth]{../oauth_diagram.png}
-	\caption{The OAuth dance.} 
+	\caption{The OAuth authentication flow. \cite{oauth-flow-chart} } 
 \end{figure}
 
 %\\source:

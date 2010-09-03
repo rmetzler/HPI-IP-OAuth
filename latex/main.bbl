@@ -1,3 +1,17 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{oauth-flow-chart}
+
+
+\bibitem{oauth}
+Oauth, 08 2010.
+
+\bibitem{openid}
+OpenID Foundation.
+\newblock Openid, 2006-2010.
+
+\bibitem{rfc}
+E.~Hammer-Lahav.
+\newblock Rfc 5849: The oauth 1.0 protocol.
 
 \end{thebibliography}

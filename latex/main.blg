@@ -1,47 +1,56 @@
 This is BibTeX, Version 0.99c (TeX Live 2009)
 The top-level auxiliary file: main.aux
 The style file: plain.bst
-I found no \citation commands---while reading file main.aux
 Database file #1: main.bib
-You've used 0 entries,
+Warning--entry type for "oauth-flow-chart" isn't style-file defined
+--line 12 of file main.bib
+Warning--entry type for "openid" isn't style-file defined
+--line 18 of file main.bib
+Warning--entry type for "oauth" isn't style-file defined
+--line 60 of file main.bib
+Warning--entry type for "rfc" isn't style-file defined
+--line 69 of file main.bib
+Warning--to sort, need author or key in oauth
+Warning--to sort, need author or key in oauth-flow-chart
+You've used 4 entries,
             2118 wiz_defined-function locations,
-            496 strings with 3981 characters,
-and the built_in function-call counts, 18 in all, are:
-= -- 0
-> -- 0
+            508 strings with 4101 characters,
+and the built_in function-call counts, 701 in all, are:
+= -- 54
+> -- 16
 < -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 7
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
++ -- 8
+- -- 4
+* -- 26
+:= -- 98
+add.period$ -- 6
+call.type$ -- 4
+change.case$ -- 13
 chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+cite$ -- 6
+duplicate$ -- 28
+empty$ -- 91
+format.name$ -- 4
+if$ -- 157
 int.to.chr$ -- 0
-int.to.str$ -- 0
+int.to.str$ -- 4
 missing$ -- 0
-newline$ -- 3
-num.names$ -- 0
-pop$ -- 0
+newline$ -- 17
+num.names$ -- 4
+pop$ -- 34
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 10
 quote$ -- 0
-skip$ -- 1
+skip$ -- 38
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
+substring$ -- 20
+swap$ -- 4
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
-warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 2
-(There was 1 error message)
+type$ -- 16
+warning$ -- 2
+while$ -- 4
+width$ -- 5
+write$ -- 27
+(There were 6 warnings)
