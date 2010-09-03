@@ -2,6 +2,8 @@ Integrating the OAuth Protocol in HPI Identity Provider
 ===================================================
 
 _Abstract:_ Today people are using many different internet services per day. It is hard for users to remember different usernames and passwords for every service they use so they often reuse the same username and password on different sites. This is a security issue that protocols like OpenID and OAuth try to solve. By creating a single online identity and allowing third party sites to authenticate users an identity provider is able to solve the security issue and enable single sign-on (SSO) above different websites.
+By adding an OAuth service provider to the existing HPI Identity Provider we enable third party services to authorize users via OAuth and manage the user's online identities.
+
 
 _Keywords:_ OAuth, SSO, online identity, identity provider, API security
 
