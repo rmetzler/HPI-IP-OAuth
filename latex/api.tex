@@ -35,24 +35,24 @@ what we need to do in the HPI IP in order to allow users to grant
 access to some relevant attributes of their identities and deny
 access to others.
 
-By this means that not only the API consumers use is becoming more
+By this means that not only the API used by service consumers is becoming more
 complex, the complexity for the user interface to manage access
 rights for consumers transparently increases too. If this problem
 isn't solved in the user interface it could lead to conflicts over
 privacy issues like it is the case with Facebook's third party
-apps.
+applications.
 
 In order to have maximum fine granularity of rights management we
-decided to manage rights to every of attributes of each digital
-identity seperatly.
+decided that the user will be able to set access permissions
+for each attribute seperately.
 
 \subsection{Accessing the User's Restricted Resources}
 
 In today's internet world there are many different technologies for
-providing API access but RESTful Web Services prevail. We decided
-to build the neccessary API in a restful way using URLs to name
+providing API access for client applications but RESTful Web Services prevail.
+We decided to build the neccessary API in a restful way using URLs to name
 resources, HTTP verbs for methods and HTTP response codes to signal
-results. [REST] This way we have to decide which resources should
+results. \cite{rest} This way we have to decide which resources should
 be available and how they are represented.
 
 The OAuth access token is essentially the right to access some of
@@ -93,11 +93,11 @@ requesting consumer:
     }
 }
 \end{verbatim}
-As you can see, the 3rd party service is able to find out the
+As you can see, the third party service is able to find out the
 resource for reading and updating the email resource. Reading is
-done with an HTTP GET request, while updating is by sending an HTTP
-POST request to the \emph{HPIIP/api/attribute/\{id\}} resource. The
-resource is again represented in JSON format:
+done by sending an HTTP GET request, while updating is by sending an HTTP
+POST request to the \emph{HPIIP/api/attribute/\{id\}} resource and using a JSON representation as payload.
+The resource is again represented in JSON format:
 
 \begin{verbatim}
 {
@@ -108,18 +108,18 @@ resource is again represented in JSON format:
     "writable" : true
 }
 \end{verbatim}
-If the client updates the value the attribute only the attribute
-\emph{value} needs to be in representation.
+If the client updates the value of the attribute only 
+\emph{value} is required in the representation.
 
 Whenever an OAuth consumer wants to access a resouce the OAuth
-provider has to verify if the requested operation is granted to
+provider has to verify if the requested operation is granted to the
 provided access token. It has to be denied otherwise using the HTTP
 response code \textbf{401 (``Unauthorized'')}.
 
 \subsection{Implementation}
 
 The proposed implementation of the described API is to use
-\emph{Jersey}, Sun's implementation of the JAX-RS specification.
+\emph{Jersey} \cite{sun-jersey}, Sun's implementation of the JAX-RS specification for RESTful Web Services. \cite{jax-rs} 
 JAX-RS describes a Java API to build RESTful webservices by using
 Java5 style annotations. These webservices have to run in a servlet
 container like Apache Tomcat or Jetty.
@@ -130,4 +130,4 @@ deployed next to each other and use their own database bindings or
 deploy it as one application in the same directory. Because we
 wanted to reuse the existing database bindings we decided to use
 the Tapestry-Jersey integration provided by Blue Tang
-Studio.[1][2]
+Studio. \cite{yunglin-source} \cite{yunglin-wiki}  

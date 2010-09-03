@@ -1,17 +1,67 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{jax-rs}
+Jax-rs: Java api for restful web services.
+\newblock \url{https://jsr311.dev.java.net/}.
 
 \bibitem{oauth-flow-chart}
+Oauth core 1.0.
+\newblock \url{http://oauth.net/core/1.0/}.
 
+\bibitem{java-oauth}
+Oauth project on google code.
+\newblock \url{http://oauth.googlecode.com/svn/code/java/}.
 
-\bibitem{oauth}
-Oauth, 08 2010.
+\bibitem{yunglin-wiki}
+Tapestry-jersey wiki.
+\newblock \url{http://wiki.github.com/yunglin/tapestry-jersey/}.
 
 \bibitem{openid}
-OpenID Foundation.
-\newblock Openid, 2006-2010.
+Openid.
+\newblock \url{http://openid.net/}, 2006-2010.
+
+\bibitem{gae}
+Google appengine.
+\newblock \url{http://appengine.google.com/}, 2010.
+
+\bibitem{oauth}
+Oauth.
+\newblock \url{http://oauth.net/}, 2010.
+
+\bibitem{yunglin-source}
+Tapestry-jersey source.
+\newblock \url{http://github.com/yunglin/tapestry-jersey}, 2010.
+
+\bibitem{gae-oauth}
+Google.
+\newblock Google appengine: Oauth for python.
+\newblock \url{http://code.google.com/intl/en-US/appengine/docs/python/oauth/}.
+
+\bibitem{gae-cron}
+Google.
+\newblock Google appengine: Scheduled tasks with cron for python.
+\newblock
+  \url{http://code.google.com/intl/en-US/appengine/docs/python/config/cron.htm%
+l}.
+
+\bibitem{gae-mail}
+Google.
+\newblock Google appengine: The mail python api.
+\newblock \url{http://code.google.com/intl/en-US/appengine/docs/python/mail/}.
 
 \bibitem{rfc}
 E.~Hammer-Lahav.
 \newblock Rfc 5849: The oauth 1.0 protocol.
+\newblock \url{http://tools.ietf.org/html/rfc5849}.
+
+\bibitem{sun-jersey}
+Oracle/Sun.
+\newblock Glassfish jersey.
+\newblock \url{https://jersey.dev.java.net/}.
+
+\bibitem{rest}
+Leonard Richardson and Sam Ruby.
+\newblock {\em RESTful Web Services: Web Services for the Real World}.
+\newblock O'Reilly, 2007.
 
 \end{thebibliography}
