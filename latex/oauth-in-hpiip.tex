@@ -1,5 +1,24 @@
 \section{Implementing OAuth in HPI IP}
 
+If you have to implement an OAuth consumer you can find many client
+implementations in every programming language possible.
+Unfortunately the same does not hold for implementing an OAuth
+provider. While there are various implementations for scripting
+languages (notably Ruby, Python and PHP) and even an experimental
+API for using Google AppEngine as OAuth service provider \cite{gae-oauth} we have found only one
+example implementation for Java. \cite{java-oauth} 
+
+This implementation unfortunately isn't a simple to use framework
+where the developer just provides the persistence layer and the web
+layer and gets the logic for creating the tokens for free. It is only
+an example implementation using servlets for implementing the OAuth URLs.
+We tried to recreate the logic found there in the example code
+using the Java Persistence API (JPA) for the persistence layer and
+Apache Tapestry for the web layer. Apache Tapestry was used by the
+HPI IP before.
+
+\subsection{Implementing OAuth URLs}
+
 OAuth defines three request endpoint URLs:
 
 \begin{itemize}
@@ -13,7 +32,7 @@ OAuth defines three request endpoint URLs:
 These endpoints are required to be implemented with the Apache
 Tapestry5 webframework that is used within the HPI IP.
 
-\subsubsection{Request Token URL}
+\subsection{Request Token URL}
 
 When the consumer sends an HTTP requests to the Request Token URL
 \emph{/oauth/request\_token} there must be the following parameters
@@ -58,7 +77,7 @@ redirects the user's web browser to the \emph{authorization url}
 with the request token appended as parameter
 \textbf{oauth\_token}.
 
-The provider has to verify the identiy of the user and then ask to
+The provider has to verify the identity of the user and then ask to
 authorize the requested access. Therefor the OAuth provider should
 display informations about the client based on the request token
 (like the OAuth client's name, url or logo) for the user to
@@ -93,15 +112,3 @@ Once the client receives and stores the token credentials it can
 use it to access protected resorces on behalf of the resource
 owner. To do so the consumer has to use his credentials together
 with the access token credentials received.
-
-\subsection{Implementing OAuth}
-
-If you have to implement an OAuth consumer you can find many client
-implementations in every programming language possible.
-Unfortunately the same does not hold for implementing an OAuth
-provider. While there are various implementations for scripting
-languages (notably Ruby, Python and PHP) we have found only one
-example implementation for Java. This implementation unfortunately
-isn't a simple to use framework where the developer just provides
-the persistence layer and the web layer and gets the logic for
-creating the tokens for free.

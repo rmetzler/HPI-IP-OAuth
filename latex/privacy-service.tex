@@ -52,7 +52,7 @@ ignored.
 
 Our example service has to be a webservice able to receive and send
 emails. Because we were not in control of and did not want to set
-up an own SMTP server we choose to use [Google AppEngine].
+up an own SMTP server we choose to use Google AppEngine. \cite{gae}
 
 Google AppEngine is a \emph{Plattform as a Service} infrastructure
 framework provided by Google. Developers can use Python and Java
@@ -60,9 +60,9 @@ framework provided by Google. Developers can use Python and Java
 to programm web applications for this infrastructure. Like most web
 frameworks Google AppEngine also implements the
 \emph{Model-View-Controller (MVC) pattern}. The framework also has
-APIs to receive and send emails and start Cron jobs.
+APIs to receive and send emails and start Cron jobs. \cite{gae-mail} \cite{gae-cron}   
 
-When an user clicks on the ``login with HPIIP'' at the service
+When an user clicks on the ``Login with HPI IP'' button on the service
 application website he will be redirected to the HPI IP where he
 can login and grant access to the service. After granting access he
 then will be redirected back to the application and can complete
@@ -79,4 +79,4 @@ Applications running on Google AppEngine are able to receive and
 send mails. When the service receives an email it looks for the
 this address in the temporary email address table. If it exists the
 email will be redirected to the associated actual email address of
-the user.
+the user. Otherwise the email will be ignored.
