@@ -1,0 +1,103 @@
+\section{Live Updates (Intercession)} %(Kai)
+\label{sec:intercession}
+
+The previous section described how to display and browse a snapshot of object hierarchies. To display the actual, not out-dated state of an object, the object explorer has to look for changes on objects. Since setting properties of an object is not usually done via a setter function, the challenge here is to hook into an object so that changes can be recorded. For this purpose, this section discusses JavaScript intercession techniques that could be used to achieve this goal.
+
+\subsection{Approaches}
+Basically, we want to achieve implementing an observer that can be used to watch a property of an object and that runs a custom handler when this occurs. Listing \ref{lst:objectObserver} shows an example how this object observer could be used while in the following different implementation approaches will be discussed.
+
+\begin{lstlisting}[caption=Exemplary usage of an object observer,label=lst:objectObserver]
+var object = { myProp: null };
+var o = new ObjectObserver(object, 'myProp', function(newV, oldV){
+  alert('changed from ' + oldV + ' to ' + newV); 
+});
+
+object.foo = 'bar'; //=> 'changed from null to bar'
+o.unregister(); // no further changes should be recorded
+\end{lstlisting}
+
+\subsubsection{Object.watch} Mozilla proposed a JavaScript extension \lstinline|object.watch(prop, handler)|which enables observing a property of an object \cite{MozillaWatch}. Listing \ref{lst:watch} shows an example how the ObjectObserver could be implemented using this extension. Unfortunately, other browsers than Mozilla Firefox doesn't support this function for which reason this is not suitable in our case.
+
+\begin{lstlisting}[caption=Implementing ObjectObserver with Object.watch,label=lst:watch]
+Object.subclass('ObjectObserver', {
+  initialize: function(obj, prop, fn){
+    %\hilight%obj.watch(prop, fn);
+  }
+});
+\end{lstlisting}
+
+\subsubsection{Polling for Changes} Additionally, the object observer could poll frequently for updates on the property of an object (see listing \ref{lst:polling}). Therefore, a function checks regularly if the current value has changed and, if there are changes, calls the handler. For implementation we used Prototype's \lstinline|Function.prototype.delay| method that enables calling a function with a defined delay (so it is more convenient way than calling JavaScript's \lstinline|window.setTimeout|). An obvious drawback of this approach is the unavoidable delay between changing a property and being notified about it.
+
+\begin{lstlisting}[caption=Implementing ObjectObserver with Polling,label=lst:polling]
+Object.subclass('ObjectObserver', {
+  initialize: function(obj, prop, fn){
+    var oldValue = obj[prop];
+    var check = function(){
+      if(oldValue !== obj[prop]){
+        fn(obj[prop], oldValue);
+        oldValue = obj[prop];
+      } 
+      %\hilight%check.delay(1);
+    };
+    check(); 
+  }
+});
+\end{lstlisting}
+
+\subsubsection{Getter \& Setter} A quite unknown JavaScript feature are setter and getter functions \cite{Ecmascript31}: Those can be defined for any object and are dealing with getting and setting the value of an object's property. Listing \ref{lst:setterGetter} demonstrates how to profit from this in the context of observing properties of an object. After having stored the current value of the property in a local variable, a getter and setter function are defined to simulate the old behavior of the property while calling additionally our callback handler. The problem here is that existing getter and setter could be overwritten.
+
+\begin{lstlisting}[caption=Implementing ObjectObserver with getter and setter,label=lst:setterGetter]
+Object.subclass('ObjectObserver', {
+  initialize: function(obj, prop, fn){
+    var value = obj[prop];
+    %\hilight%obj.__defineSetter__(prop, function(v) {
+      fn(v, value);
+      value = v;
+    });
+    %\hilight%obj.__defineGetter__(prop, function() {
+      return value;
+    });
+  }
+});
+\end{lstlisting}
+
+\subsubsection{Wrapper} As mentioned before, setter and getter of object properties can be implemented through functions. Since JavaScript functions are objects and can be stored into a variable, the object observer can just overwrite existing setter by its own implementation that invokes the old setter. This way, the old behavior is conserved but the callback handler can be called. Listing \ref{lst:wrapper} shows an accordant implementation and even provides an unregister function to restore the previous state (this essential method has already been used in listing \ref{lst:objectObserver}).
+
+\begin{lstlisting}[caption=Implementing ObjectObserver with wrapped getter and setter,label=lst:wrapper]
+Object.subclass('ObjectObserver', {
+  initialize: function(obj, prop, fn){
+    [...] // Define setter and getter, if not available
+    var setter = obj.__lookupSetter__(prop);
+    %\hilight%var wrappedSetter = function(val){
+      fn(val, obj[prop]);
+      setter.call(obj, val);
+    });
+    obj.__defineSetter__(prop, wrappedSetter);
+    %\hilight%this.unregister = function(){
+      obj.__defineSetter__(prop, setter); 
+    }
+  }
+});
+\end{lstlisting}
+
+\subsection{Implementation Considerations}
+We now have a handful of techniques which allow to observe objects. Although the approach using wrapped setters seems to be the most clean one, it has some limits for arrays where setters are not called when accessing indexes (see listing \ref{lst:limits1}). Additionally, in JavaScript arbitrary properties can be added (and deleted) to an object at any time just by giving it a value what makes it difficult to track those changes.  To solve these issues, we implemented the object observer with the following combination of techniques:
+\begin{itemize}
+\item \emph{Changed object properties}: For each observed property, a getter and setter is defined, if not available. Afterwards, the setter is wrapped to call the handler.
+\item \emph{Added and deleted object properties}: For each observed object, a scheduled function polls for changes in the list of properties. Handlers are (un)registered if a property is identified as added or deleted.
+\item \emph{Added, changed and deleted array indexes}: For each observed array, polling functions are used as described before, but they are additionally looking for changes on array indexes.
+\end{itemize}
+Because of this, our object observer interface supports registering rather on object than on property level. Additionally, the \lstinline|ObjectObserver| class is a singleton to be able to manage registered callbacks and wrapped setters so that our final interface is \lstinline|ObjectObserver.register(obj, fn)| instead of \lstinline|new ObjectObserver(obj, prop, fn)|).
+
+\begin{lstlisting}[caption=Setters on array indexes have no effect,label=lst:limits1]
+var a = [1];
+a.__defineGetter__('0', function(){return 'foo'});
+a[0]; // Getter does work #=> 'foo' 
+a.__defineSetter__('0', function(){alert('changed')});
+a[0] = 1; // Setter does not work, no alert :(
+\end{lstlisting}
+
+\subsection{Self Referenced Browsing} %
+One requirement of the object explorer is to be able to explore itself. With live updates, this could lead to infinite recursion when exploring itself: While the explorer is drawing its internal structure, this causes updates on it which requires another redraw (and so on). To handle this, we implemented a switch to detect when the explorer browses itself and just disables live updates for that specific part. 
+
+Another candidate for infinite recursion could be having two reciprocal browsing explorers. Against our expectations, this scenario couldn't be constructed by reason of Lively removes and re-adds morphs when bringing an inactive object explorer to front. This way, all the expanded object explorer components are collapsed when clicking on another object explorer which makes it impossible to produce infinite recursion. Once the implementation in Lively has been changed, this could be solved with a similar switch as for self referenced browsing.

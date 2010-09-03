@@ -1,0 +1,17 @@
+\section{Object Explorer Overview} %(Alle)
+The object explorer is implemented as a morph and thus easy to integrate into the Lively Kernel. By simple right-clicking on a morph and selecting \emph{explore}, any morph can be browsed in the object explorer. It displays the properties of the morph object in a tree view. Depending on the type of the property the information displayed varies. Underneath the tree view there is a console view, which is used to display or manipulate a function's source. Besides the manipulation of objects, the object explorer provides a few more options accessible through the side menu in the upper right corner. Available options are expanding/ collapsing all items, enabling/ disabling the morph view and displaying/ hiding functions. Some of the features may be only accessible in morph view respectively the normal view.
+
+\subsection{Architecture} %
+
+\begin{figure}[hb]
+  \centering
+  \includegraphics[width=0.9\textwidth]{resources/class_diagram}
+  \caption{UML class diagram of relevant object explorer classes}
+  \label{fig:abb1}
+\end{figure}
+
+For separation of concerns we decided to apply the Model-View-Controller design pattern. The \lstinline|ObjectExplorer| class can be used to create instances of the explorer and behaves in the MVC context as the \emph{controller}: It builds up the tree of objects (\emph{model}) and create the interface components to display this tree (\emph{view}).
+
+The view mainly consists of a tree view which is represented by the \lstinline|TreeMorph| component. It contains several morphs for displaying the single nodes. Therefore the \lstinline|TreeNodeMorph| is used which itself is composed of several other morphs again (not displayed in the diagram). The model part is represented by \lstinline|ObjectExplorer.TreeNode| derived by \lstinline|TreeNode|. The latter describes standard node functions like \lstinline|expand|, \lstinline|collapse|, \lstinline|setText|, \lstinline|getText| etc. The former however fulfills the model functionality, as it sets the text of the node according to the observed property.
+
+Last but not least there remains the \lstinline|ObjectObserver| component, which is responsible for observing an property by providing operations for registering/deregistering callbacks for a property.

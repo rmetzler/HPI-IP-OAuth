@@ -1,0 +1,40 @@
+\section{Appendix } %
+\subsection{HowTo Install/ Setup} %(Appendix?)
+
+
+When deploying to an already existing Lively project, the files mentioned in table \ref{tab:files} should be placed in the Lively source folder. In addition the files mentioned in table \ref{tab:changes} should replace the original Lively files in the source folder. To start Lively with object explorer enabled simply load 
+\lstinline{objectExplorer.xhtml} in your browser (latest Google Chrome or Safari preferred).
+\begin{table*}\centering 
+\ra{1.3} 
+\begin{tabular}{@{}ll@{}}
+\toprule
+File&Function\\ 
+\midrule
+objectExplorer.xhtml &The xhtml (with test) links to all js files\\ 
+ObjectExplorer/ObjectExplorer.js &The main application class\\ 
+ObjectExplorer/ObjectExplorerTreeNode.js & A tree node representing an object to explore\\ 
+ObjectExplorer/ObjectObserver.js &An Observer that registers callbacks\\ 
+ObjectExplorer/Tree.js &Logic for addind nodes to a tree\\ 
+ObjectExplorer/TreeMorph.js &A morph that displays a tree\\
+ObjectExplorer/Utils.js &Some functions we needed but did not fit anywhere else\\  
+ObjectExplorer/collapsed.png &The icon for collapsed treenode\\  
+ObjectExplorer/expanded.png &The icon for expanded treenode\\ 
+ObjectExplorer/Tests/ObjectExplorerTest.js &Tests for observer\\ 
+ObjectExplorer/Tests/TreeTest.js&Tests for treenode implementation\\ 
+\bottomrule 
+\end{tabular} 
+\caption{Files for Object Explorer} 
+\label{tab:files}
+
+\ra{1.3} 
+\begin{tabular}{@{}lcl@{}}
+\toprule
+File&Line&Changes\\ 
+\midrule 
+Core.js &\#2790 &added 'explore' to context menu in order to start Object Explorer\\ 
+Core.js &\#4359 &added 'explore' to morph menu\\ 
+\bottomrule 
+\end{tabular} 
+\caption{Changed Files} 
+\label{tab:changes}
+\end{table*}

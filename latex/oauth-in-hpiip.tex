@@ -1,0 +1,107 @@
+\subsection{Implementing OAuth in HPI IP}
+
+OAuth defines three request endpoint URLs:
+
+\begin{itemize}
+\item
+  Request Token URL - we use \emph{/oauth/request\_token}
+\item
+  User Authorization URL - we use \emph{/oauth/authorize}
+\item
+  Access Token URL - we use \emph{/oauth/access\_token}
+\end{itemize}
+These endpoints are required to be implemented with the Apache
+Tapestry5 webframework that is used within the HPI IP.
+
+\subsubsection{Request Token URL}
+
+When the consumer sends an HTTP requests to the Request Token URL
+\emph{/oauth/request\_token} there must be the following parameters
+specified:
+
+\begin{itemize}
+\item
+  \emph{realm}
+\item
+  \emph{oauth\_consumer\_key}
+\item
+  \emph{oauth\_signature\_method}
+\item
+  \emph{oauth\_callback}
+\item
+  \emph{oauth\_signature}
+\end{itemize}
+The service provider must validate the incoming OAuth message and
+verify the consumer by checking his credentials against the
+database. Then the service provider creates a new set of temporary
+credentials and returns it in a HTTP response body using
+\emph{``application/x-www-form-urlencoded''} content type.
+
+If the request was valid the response contains the following url
+encoded parameters:
+
+\begin{itemize}
+\item
+  \emph{oauth\_token}
+\item
+  \emph{oauth\_token\_secret}
+\item
+  \emph{oauth\_callback\_confirmed}
+\end{itemize}
+This oauth token is called the \emph{request token} and it is used
+to identify the OAuth authorization flow.
+
+\subsubsection{User Authorization URL}
+
+After receiving the \emph{request token} the OAuth consumer
+redirects the user's web browser to the \emph{authorization url}
+with the request token appended as parameter
+\textbf{oauth\_token}.
+
+The provider has to verify the identiy of the user and then ask to
+authorize the requested access. Therefor the OAuth provider should
+display informations about the client based on the request token
+(like the OAuth client's name, url or logo) for the user to
+verify.
+
+To prevent repeated authorization attempts the provider has to
+delete or mark the request token as used. If the user authorize the
+consumer the user's webbrowser is redirected to the consumer's
+callback url and \emph{oauth\_token} and \emph{oauth\_verifier} are
+appended as parameters.
+
+\subsubsection{Access Token URL}
+
+When the user is redirected to the OAuth consumer the consumer uses
+the \emph{oauth\_verifier} to obtain the permanent access token. To
+do this the \emph{oauth\_verifier} is added to the list of
+parameters the consumer used to obtain the request token and all
+parameters are appended to the access token url.
+
+The server must verify the validity of the request. If the request
+is valid and authorized the permanent token credentials are
+includes as ``application/x-www-form-urlencoded'' content type with
+status code 200 (OK) in the HTTP response. The parameters are
+
+\begin{itemize}
+\item
+  \emph{oauth\_token}
+\item
+  \emph{oauth\_token\_secret}
+\end{itemize}
+Once the client receives and stores the token credentials it can
+use it to access protected resorces on behalf of the resource
+owner. To do so the consumer has to use his credentials together
+with the access token credentials received.
+
+\subsubsection{Implementing OAuth}
+
+If you have to implement an OAuth consumer you can find many client
+implementations in every programming language possible.
+Unfortunately the same does not hold for implementing an OAuth
+provider. While there are various implementations for scripting
+languages (notably Ruby, Python and PHP) we have found only one
+example implementation for Java. This implementation unfortunately
+isn't a simple to use framework where the developer just provides
+the persistence layer and the web layer and gets the logic for
+creating the tokens for free.

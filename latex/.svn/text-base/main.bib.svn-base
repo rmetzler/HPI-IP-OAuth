@@ -1,0 +1,65 @@
+@misc{ Lively,
+    author = {Sun Labs and Hasso-Plattner-Institute},
+    title  = {Lively Kernel Project Page},
+    howpublished = {\url{http://www.lively-kernel.org}},
+    year = 2010
+}
+
+@manual{ Ecmascript3,
+    title = {ECMA-262 3rd edition - ECMAScript Language Specification},
+    year = 1999,
+    organization = {Ecma International},
+    note = {\url{http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262,%203rd%20edition,%20December%201999.pdf}}
+}
+
+@manual{ Ecmascript5,
+    title = {ECMA-262 5rd edition - ECMAScript Language Specification},
+    year = 2009,
+    organization = {Ecma International},
+    note ={\url{http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-262.pdf}}
+}
+
+@manual{ Ecmascript31,
+    title = {Proposed ECMAScript 3.1 Static Object Functions: Use Cases and Rationale},
+    year = 2008,
+    author = {Allen Wirfs-Brock},
+    organization = {Microsoft Corporation},
+    note ={\url{http://wiki.ecmascript.org/lib/exe/fetch.php?id=es3.1%3Aes3.1_proposal_working_draft&cache=cache&media=es3.1:rationale_for_es3_1_static_object_methodsaug26.pdf}}
+}
+
+@inproceedings{WrapperRemoval,
+    author = {John Brant and Brian Foote and Ralph E. Johnson and Donald Roberts},
+    title = {Wrappers to the Rescue},
+    booktitle = {Proceedings ECOOP ’98, volume 1445 of LNCS},
+    year = {1998},
+    pages = {396--417},
+    publisher = {Springer-Verlag}
+}
+
+@misc{ MozillaWatch,
+    author = {Mozilla},
+    title  = {Core JavaScript 1.5 Reference - Object.watch},
+    howpublished = {\url{https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/Object/watch}},
+    year = 2008
+}
+
+@misc{ Koss06,
+    author = {Mike Koss },
+    title  = {Object Oriented Programming in JavaScript},
+    howpublished = {\url{http://mckoss.com/jscript/object.htm}},
+    year = 2006
+}
+
+@misc{ Nyman09,
+    author = {Robert Nyman},
+    title  = {JavaScript - From birth to closure},
+    howpublished = {\url{http://www.slideshare.net/robnyman/javascript-from-birth-to-closure}},
+    year = 2009
+}
+
+@misc{ Crockford06,
+  author = "Douglas Crockford",
+  title = {Prototypal Inheritance in JavaScript},
+  howpublished = {\url{http://javascript.crockford.com/prototypal.html}},
+  year = {2006-2008}
+}

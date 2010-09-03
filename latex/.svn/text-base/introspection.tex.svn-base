@@ -1,0 +1,47 @@
+\section{Exploring Objects (Introspection)} %(Alex)
+\label{sec:introspection}
+
+In the following sections the aspects of displaying and manipulating properties will be covered. For each aspect the idea of the underlying JavaScript implementation will be discussed briefly.
+
+\subsection{Displaying properties} %
+In order to display an object's properties, it is essential to get a list of all the properties the explored object holds. Therefor introspection is used. As already mentioned in section \ref{lst:ass_arrays} JavaScript objects are associative arrays. Capitalizing this characteristic it is possible to receive the list of properties.
+
+\begin{lstlisting}[caption=Iterating over JavaScript object's properties,label=lst:object_properties]
+var printObjectProperties = function(obj){
+  for(var property in obj){
+    //show function source
+    if (typeof(obj[property]) === 'function')
+      alert(obj[property]); 
+  }
+}
+\end{lstlisting}
+
+In listing \ref{lst:object_properties} the variable \lstinline|property| holds the name of the current property. This can be used to access the property itself. In the object explorer the property name along with a literal description of the property's value is displayed. The description depends on the actual type of the property. 
+
+
+Using the keyword \textbf{typeof} we can determine the type which works as a discriminator for building the description string.
+It returns one of the following types: string, function, object, number, boolean, undefined. In the case of an object the description should look similar to Java's toString method which typically includes the name of the object and the properties with their respective values. In order to achieve that we use the \lstinline{Object.inspect} method. Internally it calls the inspect method of the passed object if one exists. Anyway, for most Lively Objects this should be the case. Otherwise it calls the toString of the object. It turns out that the Object.inspect fits our need to provide a useful literal description.
+
+\subsubsection{Displaying function source}
+In more advanced usage scenarios it could be useful to examine the source code of some functions of an object. Therefor we introduced a console widget which is displayed underneath the tree view. By clicking on a function in the tree view, the source is displayed in the console. The underlying JavaScript implementation is fairly easy -  \lstinline|(new Function() {alert('foo');}).toString();|.
+
+\subsubsection{Browsing morph hierarchy}
+Assume you want to explore the graphical Lively world. It consists of several morphs which themselve are composed of several other morphs. Internally a Lively morph has an array \lstinline|submorphs| which will contain the morphs it is composed of. Of course, these submorphs may consist of several submorphs again. In order to get a quick overview of a Lively world, it is annoying to click through the entire \lstinline|submorphs| array over and over. Hence we introduced a domain specific view - the morph hierarchy.
+
+
+In this view all properties except Lively morphs are hidden. The implementation basically filters all non-morph objects using the Lively introspection.
+
+\subsection{Manipulating properties}
+Besides the pure functionality of displaying properties, there may be an interest in manipulating them too. Manipulation of properties is done using the object explorer's console. Here the \lstinline|this| keyword refers to the explored object, e.g. \lstinline|this.documentation = "A useless documentation."| will change the \lstinline|documentation| property. To execute the statement, right-click it, select \emph{text-functions} and afterwards \emph{do-it}.
+
+
+It turned out that manipulating objects is quite a useful feature, even during the development time of the object explorer itself. In order to provide such a feature we reused existing Lively functionality. The console is a Lively TextMorph which supports the evaluation of entered text. It is often used to execute selected text, which is refered to as \emph{Do-It functionality}. Internally the provided text is executed using JavaScript's \lstinline|eval| function. Thrown exceptions are displayed in an TextMorph overlay. However, to manipulate the explored object, a binding of the \lstinline|this| keyword to the object itself was needed. A TextMorph defines a DoItContext which is set to our explored object (see listing \ref{lst:doitcontext}).
+
+\begin{lstlisting}[caption=Setting Do-It context,label=lst:doitcontext]
+panel.textPane.innerMorph().connectModel({
+  model: {contextForEval: function(){return this.objectToExplore}.bind(this)},
+  getDoitContext: 'contextForEval'
+});
+\end{lstlisting}
+
+As functions are object properties, it is reasonable to make them changeable too. Therefor select a function and change the source accordingly. Afterwards right click the source and select \emph{save function source}. The internal mechanism is similar to the manipulation of properties as described above. Solely the evaluated text has to be prefixed with the object path relative to the explored object, e.g.\lstinline|this.fullbounds.intersects = <console_source>|. The prefixing is invisible to the user and is applied after the user selects \emph{save function source}.

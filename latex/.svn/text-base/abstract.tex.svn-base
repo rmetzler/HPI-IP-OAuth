@@ -1,0 +1,13 @@
+%\begin{abstract}
+%	The Lively Kernel is an experimental web programming environment written in JavaScript and running in the web browser. It is heavily influenced by Squeak for Smalltalk.
+%	Building new applications of any system requires standard development tools (e.g. debuggers or object explorers) some of them currently not available for the Lively Kernel but crucial to developers. 
+%	In this paper we discuss our attempt on providing an object explorer for Lively in order to empower developers building and debugging applications with this IDE. Therefore we need to leverage the metaprogramming features of JavaScript to be able to dynamically introspect and intercede objects on runtime. 
+%\end{abstract}
+
+\begin{abstract}
+Building new applications of any kind requires standard development tools, e.g. debuggers or object explorers. The Lively Kernel, an experimental web programming environment written in Java\-Script and running in the web browser, lacks some important tools that are crucial to developers.
+
+To fill this gap we implemented an object explorer for Lively that empowers developers browsing object hierarchies and inspecting objects. This paper primarily presents and discusses JavaScript metaprogramming features and techniques to dynamically introspect and intercede objects on runtime. A design for an object explorer is proposed that utilizes these language features.
+\end{abstract}
+
+%\todo{welchen abstract findet ihr besser?}

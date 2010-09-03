@@ -1,0 +1,13 @@
+\section{Introduction } %  (Richard)
+\label{sec:intro}
+
+%What is lively?
+Lively was originally developed by Sun Microsystems Laboratories and is now available as MIT licensed open source software \cite{Lively}. It is heavily influenced by Squeak, supporting both desktop-style applications with rich graphics and the ability to modify these applications on the fly by functioning as an integrated development environment (IDE). 
+In Lively every graphical manipulable object is a morph, the most top-level morphs are called worlds.
+Morphs have properties that define their look, behavior and relations with other objects and are part of a morph hierarchy.
+
+% Motivation & Goals
+While Lively provides a quite acceptable number of development tools for working on Lively based applications, developers miss the ability to browse object hierarchies and the morph/ submorph relations in particular. For this reason, an object explorer should be able to display these relations and the resulting hierarchy. The immediate reflection of changes would be essential to the usefulness of the specified tool as a single snapshot would be outdated very fast. Also it should be possible that an object explorer instance can explore itself (self referenced browsing).
+
+%Outline
+On the basis of these requirements, this paper discusses an object explorer design and implementation with the help of JavaScript's metaprogramming features: In section \ref{sec:javascript}, we provide a short introduction of JavaScript objects and inheritance and show the differences in Lively. The following section describes the architecture of the object explorer while sections \ref{sec:introspection} and \ref{sec:intercession} show how introspection and intercession techniques can be used to enable object browsing and live updates. Benchmarks concerning memory and performance are given in section \ref{sec:analysis}. The last section summarizes and concludes our work.

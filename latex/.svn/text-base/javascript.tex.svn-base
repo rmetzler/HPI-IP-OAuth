@@ -1,0 +1,39 @@
+\section{Metaprogramming in Javascript}%[label=sec:metaprogramming] % (Richard)
+\label{sec:javascript}
+
+Despite its name JavaScript is fundamental different from most other object-oriented programming languages including Java. The major differences in JavaScript are prototypal inheritance and the dynamic nature of objects that can be modified on runtime despite the lack of a meta object protocol.
+
+%\subsection{Objects in JavaScript}
+
+As seen in listing \ref{lst:ass_arrays} JavaScript objects are associative arrays that consist of key/value pairs. Functions can be added to an object and called in the context of that object. Changing the behaviour of objects at runtime is a feature that would require an explicit meta object protocol in most of today's programming languages.
+
+\begin{lstlisting}[caption=JavaScript objects are associative arrays,label=lst:ass_arrays]
+var book = { "title" : "Faust", "author" : "Goethe" };
+book.wrote = function() { 
+	return this.author + " wrote " + this.title;}
+keys(book); // ["title", "author", "wrote"]
+\end{lstlisting}								
+
+In JavaScript functions are objects too. Functions may have attributes and can be modified on runtime. Functions can also be used as constructors creating new objects. Objects created through constructors inherit all properties from the constructor's \emph{prototype}. \cite{Crockford06}  By adding new functions to the prototype it is possible to add functionality to existing objects as shown in listing \ref{lst:proto-inheritance}. 
+
+\begin{lstlisting}[caption=Constructors and prototypal inheritance,label=lst:proto-inheritance]
+function Book(author, title) {
+  this.author = author; this.title = title; }; 
+var hamlet = new Book("Shakespeare", "Hamlet");
+
+Book.prototype.wrote = book.wrote; // reuse function
+hamlet.wrote(); // "Shakespeare wrote Hamlet"
+\end{lstlisting}
+
+Lively additionally adds a more established style of inheritance - the class based inheritance. It is introduced by means of metaprogramming techniques. A small example demonstrates the feature in listing \ref{lst:lively-class-inheritance}.  
+
+\begin{lstlisting}[caption=Lively's class based inheritance ,label=lst:lively-class-inheritance]
+Object.subclass("Book", {
+  initialize: function(author, title){
+    this.author = author; this.title = title;
+  },
+  wrote: function(){...}
+});
+Book.subclass("DrawingBook", {});
+var bookForChildren = new DrawingBook();
+\end{lstlisting}
