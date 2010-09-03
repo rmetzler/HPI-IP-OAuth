@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.1.24)  3 SEP 2010 13:18
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.1.24)  3 SEP 2010 13:43
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -404,60 +404,40 @@ n-tity Provider
 File: ../HPI-IP-OAuth/raw/master/OAuth.png Graphic file (type png)
 
 <use ../HPI-IP-OAuth/raw/master/OAuth.png> [2 <../HPI-IP-OAuth/raw/master/OAuth
-.png>] <../oauth_diagram.png, id=34, 827.09pt x 550.055pt>
+.png>] <../oauth_diagram.png, id=35, 827.09pt x 550.055pt>
 File: ../oauth_diagram.png Graphic file (type png)
 
-<use ../oauth_diagram.png>) (./privacy-service.tex
-Overfull \hbox (494.96443pt too wide) in paragraph at lines 60--1
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 60--1
-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
-Overfull \vbox (12.91537pt too high) has occurred while \output is active []
-
-
-[4 <../oauth_diagram.png>]
-<../HPI-IP-OAuth/raw/master/example-service-seq.png, id=44, 248.24745pt x 241.3
-818pt>
+<use ../oauth_diagram.png>) (./privacy-service.tex [3 <../oauth_diagram.png>]
+<../HPI-IP-OAuth/raw/master/example-service-seq.png, id=43, 689.57625pt x 670.5
+05pt>
 File: ../HPI-IP-OAuth/raw/master/example-service-seq.png Graphic file (type png
 )
- <use ../HPI-IP-OAuth/raw/master/example-service-seq.png>
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5])
-(./oauth-in-hpiip.tex [6 <../HPI-IP-OAuth/raw/master/example-service-seq.png>]
-[7]) (./api.tex [8]
+ <use ../HPI-IP-OAuth/raw/master/example-service-seq.png>)
+(./oauth-in-hpiip.tex [4] [5 <../HPI-IP-OAuth/raw/master/example-service-seq.pn
+g>] [6]) (./api.tex [7]
 Overfull \hbox (11.00275pt too wide) in paragraph at lines 68--70
 []\OT1/cmr/m/n/10 the re-source of the user who granted the ac-cess to-ken shou
 ld be \OT1/cmr/m/it/10 HPI-IP/api/user 
  []
 
-[9]
+[8]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 99.
  (/usr/local/texlive/2009/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 99.
-) [10]
+) [9]
 (./main.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [11] (./main.aux) ) 
+) [10] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 6071 strings out of 493848
- 88809 string characters out of 3149207
+ 6075 strings out of 493848
+ 88849 string characters out of 3149207
  171545 words of memory out of 3000000
- 9230 multiletter control sequences out of 15000+200000
+ 9232 multiletter control sequences out of 15000+200000
  7970 words of font info for 29 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  38i,6n,40p,788b,399s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -471,9 +451,9 @@ cmsy10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mti10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 tt10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
 t9.pfb>
-Output written on main.pdf (11 pages, 310297 bytes).
+Output written on main.pdf (10 pages, 310345 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 28 named destinations out of 1000 (max. 500000)
+ 125 PDF objects out of 1000 (max. 8388607)
+ 30 named destinations out of 1000 (max. 500000)
  32 words of extra memory for PDF output out of 10000 (max. 10000000)
 
