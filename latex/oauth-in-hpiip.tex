@@ -1,4 +1,4 @@
-\subsection{Implementing OAuth in HPI IP}
+\section{Implementing OAuth in HPI IP}
 
 OAuth defines three request endpoint URLs:
 
@@ -51,7 +51,7 @@ encoded parameters:
 This oauth token is called the \emph{request token} and it is used
 to identify the OAuth authorization flow.
 
-\subsubsection{User Authorization URL}
+\subsection{User Authorization URL}
 
 After receiving the \emph{request token} the OAuth consumer
 redirects the user's web browser to the \emph{authorization url}
@@ -70,7 +70,7 @@ consumer the user's webbrowser is redirected to the consumer's
 callback url and \emph{oauth\_token} and \emph{oauth\_verifier} are
 appended as parameters.
 
-\subsubsection{Access Token URL}
+\subsection{Access Token URL}
 
 When the user is redirected to the OAuth consumer the consumer uses
 the \emph{oauth\_verifier} to obtain the permanent access token. To
@@ -94,7 +94,7 @@ use it to access protected resorces on behalf of the resource
 owner. To do so the consumer has to use his credentials together
 with the access token credentials received.
 
-\subsubsection{Implementing OAuth}
+\subsection{Implementing OAuth}
 
 If you have to implement an OAuth consumer you can find many client
 implementations in every programming language possible.

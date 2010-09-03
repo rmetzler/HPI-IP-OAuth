@@ -1,4 +1,4 @@
-\subsection{Making API Requests}
+\section{Application Programming Interface (API)}
 
 Whenever the consumer tries to access the user's restricted
 resource he has to add the OAuth protocol parameters to the request
@@ -25,7 +25,7 @@ of \emph{nonce / timestamp / token} has never used before and
 verify that the scope and status of the authorization as
 represented by the OAuth request token is valid.
 
-\subsubsection{Granularity of Rights Management}
+\subsection{Granularity of Rights Management}
 
 While most existing OAuth providers (e.g. Twitter) manage rights
 only at the granularity of of the access token allowing or denying
@@ -46,7 +46,7 @@ In order to have maximum fine granularity of rights management we
 decided to manage rights to every of attributes of each digital
 identity seperatly.
 
-\subsubsection{Accessing the User's Restricted Resources}
+\subsection{Accessing the User's Restricted Resources}
 
 In today's internet world there are many different technologies for
 providing API access but RESTful Web Services prevail. We decided
@@ -116,7 +116,7 @@ provider has to verify if the requested operation is granted to
 provided access token. It has to be denied otherwise using the HTTP
 response code \textbf{401 (``Unauthorized'')}.
 
-\subsubsection{Implementation}
+\subsection{Implementation}
 
 The proposed implementation of the described API is to use
 \emph{Jersey}, Sun's implementation of the JAX-RS specification.

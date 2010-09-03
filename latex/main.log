@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.1.24)  3 SEP 2010 12:27
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.1.24)  3 SEP 2010 13:18
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -329,20 +329,20 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
 \c@lstlisting=\count135
  (/usr/local/texlive/2009/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -357,7 +357,7 @@ LaTeX Font Info:    ... okay on input line 60.
 \MPnumerator=\count140
 \everyMPtoPDFconversion=\toks22
 )
-Package hyperref Info: Link coloring OFF on input line 60.
+Package hyperref Info: Link coloring OFF on input line 62.
  (/usr/local/texlive/2009/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
@@ -366,8 +366,8 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count141
 )
-LaTeX Info: Redefining \ref on input line 60.
-LaTeX Info: Redefining \pageref on input line 60.
+LaTeX Info: Redefining \ref on input line 62.
+LaTeX Info: Redefining \pageref on input line 62.
 
 (./main.out) (./main.out)
 \@outlinefile=\write3
@@ -375,13 +375,13 @@ LaTeX Info: Redefining \pageref on input line 60.
 
 \AtBeginShipoutBox=\box57
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 77.
+(Font)              <7> on input line 79.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 77.
+(Font)              <5> on input line 79.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 77.
+(Font)              <9> on input line 79.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 77.
+(Font)              <6> on input line 79.
 
 
 Package hyperref Warning: bookmark level for unknown title defaults to 0.
@@ -395,28 +395,26 @@ Overfull \hbox (4.33228pt too wide) in paragraph at lines 4--5
 n-tity Provider
  []
 
-) (./intro.tex) (./oauth-protocol.tex
-<../HPI-IP-OAuth/raw/master/OAuth.png, id=12, 444.66125pt x 441.65pt> [1
+) (./intro.tex) (./oauth-protocol.tex [1
 
 
 
 {/usr/local/texlive/2009/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<../HPI-IP-OAuth/raw/master/OAuth.png, id=25, 160.07805pt x 158.994pt>
 File: ../HPI-IP-OAuth/raw/master/OAuth.png Graphic file (type png)
 
-<use ../HPI-IP-OAuth/raw/master/OAuth.png>
-Overfull \hbox (112.53662pt too wide) in paragraph at lines 11--14
-[][] 
+<use ../HPI-IP-OAuth/raw/master/OAuth.png> [2 <../HPI-IP-OAuth/raw/master/OAuth
+.png>] <../oauth_diagram.png, id=34, 827.09pt x 550.055pt>
+File: ../oauth_diagram.png Graphic file (type png)
+
+<use ../oauth_diagram.png>) (./privacy-service.tex
+Overfull \hbox (494.96443pt too wide) in paragraph at lines 60--1
+[][]
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 60--1
 
- [2 <../HPI-IP-OAuth/raw/master/OAuth.png>]
-<../oauth_diagram.png, id=32, 827.09pt x 550.055pt>
-File: ../oauth_diagram.png Graphic file (type png)
- <use ../oauth_diagram.png>) (./privacy-service.tex
-Overfull \hbox (494.96443pt too wide) in paragraph at lines 59--1
-[][] 
  []
 
 
@@ -427,50 +425,42 @@ Overfull \vbox (12.91537pt too high) has occurred while \output is active []
 
 
 [4 <../oauth_diagram.png>]
-<../HPI-IP-OAuth/raw/master/example-service-seq.png, id=45, 689.57625pt x 670.5
-05pt>
+<../HPI-IP-OAuth/raw/master/example-service-seq.png, id=44, 248.24745pt x 241.3
+818pt>
 File: ../HPI-IP-OAuth/raw/master/example-service-seq.png Graphic file (type png
 )
  <use ../HPI-IP-OAuth/raw/master/example-service-seq.png>
-Overfull \hbox (597.84029pt too wide) in paragraph at lines 42--44
-[]\OT1/cmr/m/n/10 Below is a se-quence di-a-gram of the de-scribed be-haviour. 
-[] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5]
-Overfull \vbox (121.3651pt too high) has occurred while \output is active []
-
-
-[6 <../HPI-IP-OAuth/raw/master/example-service-seq.png>]) (./oauth-in-hpiip.tex
-[7]) (./api.tex [8] [9]
+ [5])
+(./oauth-in-hpiip.tex [6 <../HPI-IP-OAuth/raw/master/example-service-seq.png>]
+[7]) (./api.tex [8]
 Overfull \hbox (11.00275pt too wide) in paragraph at lines 68--70
 []\OT1/cmr/m/n/10 the re-source of the user who granted the ac-cess to-ken shou
 ld be \OT1/cmr/m/it/10 HPI-IP/api/user 
  []
 
+[9]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 99.
-(/usr/local/texlive/2009/texmf-dist/tex/latex/base/omscmr.fd
+ (/usr/local/texlive/2009/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 99.
- [10]) [11]
+) [10]
 (./main.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [12] (./main.aux) ) 
+) [11] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 6077 strings out of 493848
- 88854 string characters out of 3149207
- 172710 words of memory out of 3000000
- 9235 multiletter control sequences out of 15000+200000
+ 6071 strings out of 493848
+ 88809 string characters out of 3149207
+ 171545 words of memory out of 3000000
+ 9230 multiletter control sequences out of 15000+200000
  7970 words of font info for 29 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,6n,40p,788b,353s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,6n,40p,788b,399s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2009/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmbx10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmbx12.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfo
@@ -481,9 +471,9 @@ cmsy10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mti10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 tt10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
 t9.pfb>
-Output written on main.pdf (12 pages, 309221 bytes).
+Output written on main.pdf (11 pages, 310297 bytes).
 PDF statistics:
- 131 PDF objects out of 1000 (max. 8388607)
- 29 named destinations out of 1000 (max. 500000)
+ 126 PDF objects out of 1000 (max. 8388607)
+ 28 named destinations out of 1000 (max. 500000)
  32 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,4 +1,4 @@
-\subsection{The OAuth Protocol}
+\section{The OAuth Protocol}
 
 \textbf{OAuth} is an open protocol to allow secure API
 authorization in a simple and standard method from desktop and web
@@ -8,7 +8,7 @@ authenticate and authorize 3rd party applications called
 \textbf{restricted resource} managed by the
 \textbf{service provider}.
 
-\includegraphics{../HPI-IP-OAuth/raw/master/OAuth.png}\\Image: The
+\includegraphics[resolution=200]{../HPI-IP-OAuth/raw/master/OAuth.png}\\Image: The
 three different parties in OAuth protocol. The user owns the
 restricted resource and can grant access to it.
 
@@ -21,7 +21,7 @@ is an significant difference towards the OpenID protocol where
 identity provider and relying party don't need to know each other
 and the authentification is done decentral.
 
-\subsubsection{OAuth Dance}
+\subsection{OAuth Dance}
 
 When a user wants to authenticate a webservice via OAuth the
 \textbf{OAuth authentication flow} (commonly referred to as the
@@ -56,5 +56,8 @@ associated secret from the service provider. The service provider
 exchanges the request token for the access token thereby granting
 access to the user's resource(s) as long as the token is valid.
 
-\includegraphics{../oauth_diagram.png}\\source:
-\href{http://dev.twitter.com/pages/auth}{http://dev.twitter.com/pages/auth}
+%\begin{picture}(6,6)
+	\includegraphics[resolution=100]{../oauth_diagram.png}	
+%\end{picture}
+%\\source:
+%\href{http://dev.twitter.com/pages/auth}{http://dev.twitter.com/pages/auth}

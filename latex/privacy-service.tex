@@ -1,4 +1,4 @@
-\subsection{OAuth Privacy EMail Service for HPIIP}
+\section{OAuth Privacy EMail Service for HPIIP}
 
 One main feature of the HPIIP is to act as an
 \textbf{identity provider} and issue \textbf{IdentityCards}. These
@@ -39,10 +39,12 @@ the emails from the relying party that are send in this short time
 window. All emails received later are considered `SPAM' and will be
 ignored.
 
-Below is a sequence diagram of the described behaviour.
-\includegraphics{../HPI-IP-OAuth/raw/master/example-service-seq.png}
+%Below is a sequence diagram of the described behaviour.
+%\begin{picture}(100,100)
+	\includegraphics[resolution=200]{../HPI-IP-OAuth/raw/master/example-service-seq.png}
+%\end{picture}
 
-\subsubsection{Implementing OAuth Privacy Service}
+\subsection{Implementation}
 
 Our example service has to be a webservice able to receive and send
 emails. Because we were not in control of and did not want to set
